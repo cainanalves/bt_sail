@@ -17,7 +17,7 @@ void update_device_info(esp_bt_gap_cb_param_t *param) {
     char bda_str[18];
     char *address = bda2str(param->disc_res.bda, bda_str, 18);
     if(!exists(sc_rst, address)){
-    	append(&sc_rst, address, myResultCallback);
+    	append(&sc_rst, address, resultCallback);
     }	
 }
 
@@ -45,10 +45,9 @@ void bt_app_gap_cb(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param) {
     return;
 }
 
-void bt_app_gap_start_up(void) {
+void bt_start(char *name) {
 
-    char *dev_name = "ESP32_SAIL";
-    esp_bt_dev_set_device_name(dev_name);
+    esp_bt_dev_set_device_name(name);
 
     /* definir o modo detectável e conectável, aguarde para ser conectado */
     esp_bt_gap_set_scan_mode(ESP_BT_SCAN_MODE_CONNECTABLE_DISCOVERABLE);
@@ -65,12 +64,6 @@ void bt_app_gap_start_up(void) {
     
 }
 
-void delay(int sec) {
-	int msec = 1000 * sec;
-	clock_t start_time = clock();
-	while (clock() < start_time + msec);
-}
-
 void paired_devices(){
   int dev_num = esp_bt_gap_get_bond_device_num();
   printf( "Número de dispositivos: %d.\n", dev_num);
@@ -84,6 +77,12 @@ void paired_devices(){
   }
   printf( "-------------------------------------|\n");
   free(dev_list);
+}
+
+void delay(int sec) {
+	int msec = 1000 * sec;
+	clock_t start_time = clock();
+	while (clock() < start_time + msec);
 }
 
 void scan(){

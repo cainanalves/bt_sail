@@ -40,11 +40,11 @@ typedef struct {
 
 static app_gap_cb_t m_dev_info;
 
-void myResultCallback(char *addr);
+void resultCallback(char *addr);
 char *bda2str(esp_bd_addr_t bda, char *str, size_t size);
 void update_device_info(esp_bt_gap_cb_param_t *param);
 void bt_app_gap_cb(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param);
-void bt_app_gap_start_up(void);
-void delay(int sec);
+void bt_start(char *name);
 void paired_devices();
+void delay(int sec);
 void scan();

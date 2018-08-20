@@ -14,8 +14,6 @@ scan_result *newAddress(char *addr){
     return address;
 }
 
-;
-
 void append(scan_result **sc_rst, char *addr, void (* scanResultCallback)(char *addr)){
 	scan_result *address = newAddress (addr);
     if ((*sc_rst) == NULL)
