@@ -17,6 +17,14 @@ bt_sail.o: /home/cainan/esp/bt_sail/main/bt_sail.c \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/lock.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/stdio.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/types.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/machine/types.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/sched.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/alloca.h \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/cainan/esp/bt_sail/build/include/sdkconfig.h \
@@ -30,9 +38,6 @@ bt_sail.o: /home/cainan/esp/bt_sail/main/bt_sail.c \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h \
  /home/cainan/esp/esp-idf/components/esp32/include/xtensa/corebits.h \
  /home/cainan/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h \
- /home/cainan/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/cainan/esp/esp-idf/components/newlib/include/alloca.h \
  /home/cainan/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/cainan/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_assert.h \
@@ -47,11 +52,6 @@ bt_sail.o: /home/cainan/esp/bt_sail/main/bt_sail.c \
  /home/cainan/esp/esp-idf/components/esp32/include/xtensa/xtruntime-core-state.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_crosscore_int.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_timer.h \
- /home/cainan/esp/esp-idf/components/newlib/include/stdio.h \
- /home/cainan/esp/esp-idf/components/newlib/include/sys/types.h \
- /home/cainan/esp/esp-idf/components/newlib/include/machine/types.h \
- /home/cainan/esp/esp-idf/components/newlib/include/sys/sched.h \
- /home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_err.h \
  /home/cainan/esp/esp-idf/components/heap/include/esp_heap_caps.h \
  /home/cainan/esp/esp-idf/components/heap/include/multi_heap.h \
@@ -133,6 +133,22 @@ bt_sail.o: /home/cainan/esp/bt_sail/main/bt_sail.c \
 
 /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h:
 
+/home/cainan/esp/esp-idf/components/newlib/include/stdio.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/types.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/machine/types.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/sched.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/alloca.h:
+
 /home/cainan/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/cainan/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
@@ -158,12 +174,6 @@ bt_sail.o: /home/cainan/esp/bt_sail/main/bt_sail.c \
 /home/cainan/esp/esp-idf/components/esp32/include/xtensa/corebits.h:
 
 /home/cainan/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/cainan/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -192,16 +202,6 @@ bt_sail.o: /home/cainan/esp/bt_sail/main/bt_sail.c \
 /home/cainan/esp/esp-idf/components/esp32/include/esp_crosscore_int.h:
 
 /home/cainan/esp/esp-idf/components/esp32/include/esp_timer.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/stdio.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/sys/types.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/machine/types.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/sys/sched.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
 /home/cainan/esp/esp-idf/components/esp32/include/esp_err.h:
 

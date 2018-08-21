@@ -20,7 +20,9 @@ scan_results.o: /home/cainan/esp/bt_sail/main/scan_results.c \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/cainan/esp/esp-idf/components/newlib/include/stdlib.h \
  /home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/cainan/esp/esp-idf/components/newlib/include/alloca.h
+ /home/cainan/esp/esp-idf/components/newlib/include/alloca.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/string.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h
 
 /home/cainan/esp/bt_sail/main/scan_results.h:
 
@@ -65,4 +67,8 @@ scan_results.o: /home/cainan/esp/bt_sail/main/scan_results.c \
 /home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/alloca.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/string.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/string.h:
 /home/cainan/esp/bt_sail/main/./scan_results.c:

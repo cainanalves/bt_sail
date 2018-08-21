@@ -1,6 +1,6 @@
 #include "bt_sail.h"
 
-scan_result *sc_rst = NULL;
+scan_result *rst;
 
 char *bda2str(esp_bd_addr_t bda, char *str, size_t size) {
     if (bda == NULL || str == NULL || size < 18) {
@@ -16,9 +16,9 @@ char *bda2str(esp_bd_addr_t bda, char *str, size_t size) {
 void update_device_info(esp_bt_gap_cb_param_t *param) {
     char bda_str[18];
     char *address = bda2str(param->disc_res.bda, bda_str, 18);
-    if(!exists(sc_rst, address)){
-    	append(&sc_rst, address, resultCallback);
-    }	
+    if(!exists(address)){
+		append(address, resultCallback);
+    }
 }
 
 void bt_app_gap_cb(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param) {
@@ -85,9 +85,9 @@ void delay(int sec) {
 	while (clock() < start_time + msec);
 }
 
-void scan(){
-	if(sc_rst != NULL)
-		sc_rst = NULL;
-	sc_rst = create();
+void startScan(){
 	esp_bt_gap_start_discovery(ESP_BT_INQ_MODE_GENERAL_INQUIRY, 10, 0);
+	
 }
+
+

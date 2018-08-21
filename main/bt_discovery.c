@@ -1,7 +1,33 @@
 
 #include "bt_sail.h"
 
+/*char *responses;
+int count = 0;
+
+char *createResponsesList(int size){
+	char *v = (char *) malloc(size * sizeof(char *));
+	return v;
+}
+
+bool exists(char *responses, int size, char *addr) {
+	for(int rsp = 0;rsp <= size; rsp++){
+		if(*responses[rsp] == addr)
+			return true;
+	}
+	return false;
+}
+
+void printResponses(char *responses, int size) { 
+	for(int rsp = 0;rsp <= size; rsp++){
+		printf("%s\n",responses[rsp]);
+	}
+}
+*/
 void resultCallback(char *addr) {
+	/*if(!exists(responses,count,addr)){
+		responses[count] = addr;
+		count++;
+	}*/
 	printf("%s\n",addr);
 }
 
@@ -39,8 +65,11 @@ void app_main() {
     bt_start("ESP32_SAIL");
 
     while(true){
-		scan();
+		startScan();
+		startScanResult();
 		delay(SCANTIME);
+		esp_bt_gap_cancel_discovery();
+		clearScanResult();
     }
 	
 	
