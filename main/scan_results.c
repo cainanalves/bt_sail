@@ -6,8 +6,12 @@ void startScanResult(){
 	sc_rst = NULL;
 }
 
-scan_result *getScanResult() {
-	return sc_rst;
+void printScanResult() {
+	scan_result *aux = sc_rst;
+	while(aux != NULL){
+		printf("MAC: %s\n",aux->addr);
+		aux = aux->next;
+	}
 }
 
 scan_result *newAddress(char *addr){

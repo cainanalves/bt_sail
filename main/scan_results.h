@@ -11,7 +11,7 @@ typedef struct {
 #define SCANTIME          10
 
 void startScanResult();
-scan_result *getScanResult();
+void printScanResult();
 void append(char *addr, void (*scanResultCallback)(char *addr));
 int getSize(scan_result *sc_rst);
 void clearScanResult();

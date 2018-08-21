@@ -69,6 +69,7 @@ void app_main() {
 		startScanResult();
 		delay(SCANTIME);
 		esp_bt_gap_cancel_discovery();
+		printScanResult();
 		clearScanResult();
     }
 	
