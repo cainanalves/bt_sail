@@ -95,7 +95,9 @@ bt_discovery.o: /home/cainan/esp/bt_sail/main/bt_discovery.c \
  /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h \
- /home/cainan/esp/bt_sail/main/scan_results.h
+ /home/cainan/esp/bt_sail/main/scan_results.h \
+ /home/cainan/esp/bt_sail/main/utils.h \
+ /home/cainan/esp/esp-idf/components/bt/bluedroid/api/include/api/esp_bt_defs.h
 
 /home/cainan/esp/bt_sail/main/bt_sail.h:
 
@@ -290,4 +292,8 @@ bt_discovery.o: /home/cainan/esp/bt_sail/main/bt_discovery.c \
 /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h:
 
 /home/cainan/esp/bt_sail/main/scan_results.h:
+
+/home/cainan/esp/bt_sail/main/utils.h:
+
+/home/cainan/esp/esp-idf/components/bt/bluedroid/api/include/api/esp_bt_defs.h:
 /home/cainan/esp/bt_sail/main/./bt_discovery.c:

@@ -22,7 +22,14 @@ scan_results.o: /home/cainan/esp/bt_sail/main/scan_results.c \
  /home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/cainan/esp/esp-idf/components/newlib/include/alloca.h \
  /home/cainan/esp/esp-idf/components/newlib/include/string.h \
- /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h \
+ /home/cainan/esp/bt_sail/main/utils.h \
+ /home/cainan/esp/esp-idf/components/bt/bluedroid/api/include/api/esp_bt_defs.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/stdint.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/_intsup.h \
+ /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/time.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h
 
 /home/cainan/esp/bt_sail/main/scan_results.h:
 
@@ -71,4 +78,18 @@ scan_results.o: /home/cainan/esp/bt_sail/main/scan_results.c \
 /home/cainan/esp/esp-idf/components/newlib/include/string.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h:
+
+/home/cainan/esp/bt_sail/main/utils.h:
+
+/home/cainan/esp/esp-idf/components/bt/bluedroid/api/include/api/esp_bt_defs.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/stdint.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/_intsup.h:
+
+/home/cainan/esp/esp-idf/components/newlib/platform_include/time.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/time.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/machine/time.h:
 /home/cainan/esp/bt_sail/main/./scan_results.c:

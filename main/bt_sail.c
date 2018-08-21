@@ -1,23 +1,15 @@
 #include "bt_sail.h"
 
-scan_result *rst;
-
-char *bda2str(esp_bd_addr_t bda, char *str, size_t size) {
-    if (bda == NULL || str == NULL || size < 18) {
-        return NULL;
-    }
-
-    uint8_t *p = bda;
-    sprintf(str, "%02x:%02x:%02x:%02x:%02x:%02x",
-            p[0], p[1], p[2], p[3], p[4], p[5]);
-    return str;
-}
+scan_result *sc_rst;
 
 void update_device_info(esp_bt_gap_cb_param_t *param) {
     char bda_str[18];
     char *address = bda2str(param->disc_res.bda, bda_str, 18);
-    if(!exists(address)){
-		append(address, resultCallback);
+    if(!exists(sc_rst,address)){
+      append(&sc_rst,address, resultCallback);
+    }else{
+      //printf("Já existe: %s\n",address);
+      printScanResult(sc_rst);
     }
 }
 
@@ -79,15 +71,20 @@ void paired_devices(){
   free(dev_list);
 }
 
-void delay(int sec) {
-	int msec = 1000 * sec;
-	clock_t start_time = clock();
-	while (clock() < start_time + msec);
-}
 
-void startScan(){
+
+void startScan(int scantime){
+  printf("start scan\n");
 	esp_bt_gap_start_discovery(ESP_BT_INQ_MODE_GENERAL_INQUIRY, 10, 0);
-	
+  printf("started\n");
+	sc_rst = NULL;
+  printf("sc_rst null\n");
+	delay(scantime);
+  printf("scanTime - cancel discovered\n");
+	esp_bt_gap_cancel_discovery();
+  printf("clear list\n");
+  clearScanResult(sc_rst);
+  printf("cleanned\n");
 }
 
 

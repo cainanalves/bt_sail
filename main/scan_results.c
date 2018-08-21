@@ -1,78 +1,54 @@
 #include "scan_results.h"
 
-scan_result *sc_rst;
-
-void startScanResult(){
-	sc_rst = NULL;
+scan_result *startScanResult(scan_result *sc_rst){
+	return NULL;
 }
 
-void printScanResult() {
+void printScanResult(scan_result *sc_rst) {
 	scan_result *aux = sc_rst;
 	while(aux != NULL){
-		printf("MAC: %s\n",aux->addr);
 		aux = aux->next;
 	}
 }
 
 scan_result *newAddress(char *addr){
-    scan_result *address = (scan_result *) malloc(sizeof(scan_result));
-    address->addr = addr;
-    address->next = NULL;
-    return address;
+    scan_result *newaddress = (scan_result *) malloc(sizeof(scan_result));
+    strcpy(newaddress->mac,addr);
+    newaddress->next = NULL;
+    return newaddress;
 }
 
-/*
-false
-append 1:  f0:d7:aa:64:cf:8c
-true: f0:d7:aa:64:cf:8c
-true: f0:d7:aa:64:cf:8c
-true: f0:d7:aa:64:cf:8c
-true: f0:d7:aa:64:cf:8c
-true: 6c:71:d9:03:4c:ac
-true: f0:d7:aa:64:cf:8c
-*/
-
-void append(char *addr, void (* scanResultCallback)(char *addr)){
-	scan_result *address = newAddress(addr);
-    if (sc_rst == NULL){
-        sc_rst = address;
-        printf("append 1:  ");
+void append(scan_result **sc_rst, char *addr, void (* scanResultCallback)(char *addr)){
+	scan_result *newaddress = newAddress(addr);
+    if (*sc_rst == NULL){
+        (*sc_rst) = newaddress;
+    }else{
+		newaddress->next = (*sc_rst)->next;
+    	(*sc_rst)->next = newaddress;
     }
-    else{
-        scan_result *aux = sc_rst;
-        while(sc_rst->next != NULL){
-            sc_rst = sc_rst->next;
-        }
-		sc_rst->next = address;
-		sc_rst = aux;
-		printf("append N:  ");
-    }
-    scanResultCallback(address->addr);
+    scanResultCallback(newaddress->mac);
 }
 
-int getSize(scan_result *sc_rst){
+int getSizeScanResult(scan_result *sc_rst){
 	scan_result *sc = sc_rst;
 	int count = 0;
-	while(sc->next != NULL){
+	while(sc != NULL){
 		count++;
 		sc = sc->next;
 	}
 	return count;
 }
 
-void clearScanResult() {
+void clearScanResult(scan_result *sc_rst) {
 	free(sc_rst);
 }
 
-bool exists(char *addr) {
+bool exists(scan_result *sc_rst, char *addr) {
 	scan_result *aux = sc_rst;
 	while(aux != NULL){
-		if(strcmp(aux->addr, addr) == 0){
-			printf("true: %s\n",addr);
+		if (strcmp(aux->mac,addr) == 0)
 			return true;
-		}
 		aux = aux->next;
 	}
-	printf("false: ");
 	return false;
 }

@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
+#include "utils.h"
 
-typedef struct {
-	char *addr;
+typedef struct scan_result {
+	char mac[18];
 	struct scan_result *next;
 } scan_result;
 
-#define SCANTIME          10
+#define SCANTIME          15
 
-void startScanResult();
-void printScanResult();
-void append(char *addr, void (*scanResultCallback)(char *addr));
-int getSize(scan_result *sc_rst);
-void clearScanResult();
-bool exists(char *addr);
+scan_result *startScanResult(scan_result *sc_rst);
+void printScanResult(scan_result *sc_rst);
+void append(scan_result **sc_rst, char *addr, void (*scanResultCallback)(char *addr));
+int getSizeScanResult(scan_result *sc_rst);
+void clearScanResult(scan_result *sc_rst);
+bool exists(scan_result *sc_rst, char *addr);
