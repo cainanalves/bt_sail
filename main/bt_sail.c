@@ -1,23 +1,17 @@
 #include "bt_sail.h"
 
-scan_result *sc_rst;
-
-void update_device_info(esp_bt_gap_cb_param_t *param) {
+void updateDeviceInfo(esp_bt_gap_cb_param_t *param) {
     char bda_str[18];
     char *address = bda2str(param->disc_res.bda, bda_str, 18);
-    if(!exists(sc_rst,address)){
-      append(&sc_rst,address, resultCallback);
-    }else{
-      //printf("Já existe: %s\n",address);
-      printScanResult(sc_rst);
-    }
+    if(!exists(address))
+      foundDevice(address,resultCallback);
 }
 
-void bt_app_gap_cb(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param) {
+void eventHandler(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param) {
 
     switch (event) {
 	    case ESP_BT_GAP_DISC_RES_EVT: {
-	        update_device_info(param);
+	        updateDeviceInfo(param);
 	        break;
 	    }
 	    case ESP_BT_GAP_DISC_STATE_CHANGED_EVT: {
@@ -37,7 +31,7 @@ void bt_app_gap_cb(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param) {
     return;
 }
 
-void bt_start(char *name) {
+void btStart(char *name) {
 
     esp_bt_dev_set_device_name(name);
 
@@ -45,7 +39,7 @@ void bt_start(char *name) {
     esp_bt_gap_set_scan_mode(ESP_BT_SCAN_MODE_CONNECTABLE_DISCOVERABLE);
 
     /* registrar função de retorno de chamada GAP */
-    esp_bt_gap_register_callback(bt_app_gap_cb);
+    esp_bt_gap_register_callback(eventHandler);
 
     /* inicializar informações e status do dispositivo */
     app_gap_cb_t *p_dev = &m_dev_info;
@@ -56,14 +50,11 @@ void bt_start(char *name) {
     
 }
 
-void paired_devices(){
+void pairedDevices() {
   int dev_num = esp_bt_gap_get_bond_device_num();
-  printf( "Número de dispositivos: %d.\n", dev_num);
-      
   esp_bd_addr_t *dev_list = (esp_bd_addr_t *)malloc(sizeof(esp_bd_addr_t) * dev_num);
   esp_bt_gap_get_bond_device_list(&dev_num, dev_list);
-  
-  printf( "-------------------------------------|\nEmparelhados pelo menos uma vez      |\n");
+  printf( "-------------------------------------|\nEmparelhados pelo menos uma vez: %d   |\n",dev_num);
   for (int i = 0; i < dev_num; i++) {
       printf( "%02x:%02x:%02x:%02x:%02x:%02x                    |\n", ESP_BD_ADDR_HEX(dev_list[i]));
   }
@@ -71,20 +62,16 @@ void paired_devices(){
   free(dev_list);
 }
 
-
-
-void startScan(int scantime){
-  printf("start scan\n");
+void startScan(int scan_time) {
+  clearScanResult();
 	esp_bt_gap_start_discovery(ESP_BT_INQ_MODE_GENERAL_INQUIRY, 10, 0);
-  printf("started\n");
-	sc_rst = NULL;
-  printf("sc_rst null\n");
-	delay(scantime);
-  printf("scanTime - cancel discovered\n");
-	esp_bt_gap_cancel_discovery();
-  printf("clear list\n");
-  clearScanResult(sc_rst);
-  printf("cleanned\n");
+	startScanResult(); 
+  delay(scan_time);
+  stopScan(); 
+}
+
+void stopScan() {
+  esp_bt_gap_cancel_discovery();
 }
 
 

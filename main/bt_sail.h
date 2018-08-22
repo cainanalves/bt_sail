@@ -1,7 +1,4 @@
 #include <stdint.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "nvs.h"
@@ -12,10 +9,8 @@
 #include "esp_bt_main.h"
 #include "esp_bt_device.h"
 #include "esp_gap_bt_api.h"
-#include <time.h>
 #include "scan_results.h"
 
-#define RESPONSES         30
 #define GAP_TAG          "GAP"
 
 typedef enum {
@@ -41,8 +36,9 @@ typedef struct {
 static app_gap_cb_t m_dev_info;
 
 void resultCallback(char * addr);
-void update_device_info(esp_bt_gap_cb_param_t *param);
-void bt_app_gap_cb(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param);
-void bt_start(char *name);
-void paired_devices();
+void updateDeviceInfo(esp_bt_gap_cb_param_t *param);
+void eventHandler(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param);
+void btStart(char *name);
+void pairedDevices();
 void startScan();
+void stopScan();

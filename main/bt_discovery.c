@@ -1,7 +1,7 @@
 
 #include "bt_sail.h"
 
-void resultCallback(char * addr) {
+void resultCallback(char *addr) {
 	printf("Dispositivo encontrado: %s\n",addr);
 }
 
@@ -35,11 +35,12 @@ void app_main() {
         return;
     }
 
-    paired_devices();
-    bt_start("ESP32_SAIL");
+    pairedDevices();
+    btStart("ESP32_SAIL");
 
     while(true){
 		startScan(SCANTIME);
+		delay(10); //Em segundos
     }
 	
 	
