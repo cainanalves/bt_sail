@@ -97,7 +97,8 @@ bt_sail.o: /home/cainan/esp/bt_sail/main/bt_sail.c \
  /home/cainan/esp/esp-idf/components/bt/bluedroid/api/include/api/esp_bt_defs.h \
  /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/time.h \
- /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h
+ /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h \
+ /home/cainan/esp/bt_sail/main/cJSON.h
 
 /home/cainan/esp/bt_sail/main/bt_sail.h:
 
@@ -296,4 +297,6 @@ bt_sail.o: /home/cainan/esp/bt_sail/main/bt_sail.c \
 /home/cainan/esp/esp-idf/components/newlib/include/time.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h:
+
+/home/cainan/esp/bt_sail/main/cJSON.h:
 /home/cainan/esp/bt_sail/main/./bt_sail.c:

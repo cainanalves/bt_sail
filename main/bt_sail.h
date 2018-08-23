@@ -11,6 +11,7 @@
 #include "esp_gap_bt_api.h"
 #include "scan_results.h"
 
+
 #define GAP_TAG          "GAP"
 
 typedef enum {
@@ -35,10 +36,16 @@ typedef struct {
 
 static app_gap_cb_t m_dev_info;
 
-void resultCallback(char * addr);
-void updateDeviceInfo(esp_bt_gap_cb_param_t *param);
-void eventHandler(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param);
-void btStart(char *name);
-void pairedDevices();
-void startScan();
-void stopScan();
+void result_callback(char * addr);
+
+void update_device_info(esp_bt_gap_cb_param_t *param);
+
+void event_handler(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param);
+
+void bt_start(char *name);
+
+void paired_devices();
+
+void start_scan();
+
+void stop_scan();

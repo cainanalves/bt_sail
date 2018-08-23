@@ -29,7 +29,8 @@ scan_results.o: /home/cainan/esp/bt_sail/main/scan_results.c \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/time.h \
- /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h
+ /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h \
+ /home/cainan/esp/bt_sail/main/cJSON.h
 
 /home/cainan/esp/bt_sail/main/scan_results.h:
 
@@ -92,4 +93,6 @@ scan_results.o: /home/cainan/esp/bt_sail/main/scan_results.c \
 /home/cainan/esp/esp-idf/components/newlib/include/time.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h:
+
+/home/cainan/esp/bt_sail/main/cJSON.h:
 /home/cainan/esp/bt_sail/main/./scan_results.c:

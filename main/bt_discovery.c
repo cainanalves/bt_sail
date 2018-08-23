@@ -1,7 +1,9 @@
 
 #include "bt_sail.h"
 
-void resultCallback(char *addr) {
+char* json;
+
+void result_callback(char *addr) {
 	printf("Dispositivo encontrado: %s\n",addr);
 }
 
@@ -35,12 +37,18 @@ void app_main() {
         return;
     }
 
-    pairedDevices();
-    btStart("ESP32_SAIL");
+    paired_devices();
+    bt_start("ESP32_SAIL");
 
     while(true){
-		startScan(SCANTIME);
-		delay(10); //Em segundos
+		start_scan(SCANTIME);
+        json = get_JSON();
+        if (json == NULL)
+            exit(EXIT_FAILURE);
+        else
+            printf("%s\n",json);
+        free(json);
+        delay(10); //Em segundos
     }
 	
 	
