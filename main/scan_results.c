@@ -2,9 +2,9 @@
 
 scan_result *sc_rst;
 
-void start_scan_result() { sc_rst = NULL; }
+void start_scan_result(void) { sc_rst = NULL; }
 
-void print_scan_result() {
+void print_scan_result(void) {
 	scan_result *aux = sc_rst;
 	while(aux != NULL){
 		printf("%s\n",aux->mac);
@@ -30,7 +30,7 @@ void found_device(char *addr, void (* scan_result_callback)(char *addr)) {
     scan_result_callback(newaddress->mac);
 }
 
-int get_size_scan_result() {
+int get_size_scan_result(void) {
 	scan_result *sc = sc_rst;
 	int count = 0;
 	while(sc != NULL){
@@ -40,7 +40,7 @@ int get_size_scan_result() {
 	return count;
 }
 
-void clear_scan_result() { free(sc_rst); }
+void clear_scan_result(void) { free(sc_rst); }
 
 bool exists(char *addr) {
 	scan_result *aux = sc_rst;
@@ -52,11 +52,12 @@ bool exists(char *addr) {
 	return false;
 }
 
-cJSON *create_JSON() {
+cJSON *create_JSON(void) {
     
     cJSON *root = NULL;
     int length = get_size_scan_result(), pos = 0;
     char *macs[length];
+
 
     root = cJSON_CreateObject();
     scan_result *aux = sc_rst;
@@ -66,13 +67,13 @@ cJSON *create_JSON() {
 		pos++;
 		aux = aux->next;
     }
-    cJSON_AddNumberToObject(root, "exemplo de timestamp", 87874425454); // Obs: Atribuir o TIMESTAMP!!
+    cJSON_AddNumberToObject(root, "timestamp", get_timestamp()); 
 	cJSON_AddItemToObject(root, "mac", cJSON_CreateStringArray(macs, length));
     
 	return root;
 }
 
-char *get_JSON() {
+char *get_JSON(void) {
     
     char *out = NULL;
     char *buf = NULL;
@@ -83,12 +84,11 @@ char *get_JSON() {
     cJSON *root = create_JSON();
     out = cJSON_Print(root);
 
-    /* the extra 5 bytes are because of inaccuracies when reserving memory */
     len = strlen(out) + 5;
     buf = (char*)malloc(len);
     if (buf == NULL)
     {
-        printf("Failed to allocate memory.\n");
+        printf("Falha ao alocar memória.\n");
         exit(1);
     }
 
@@ -96,17 +96,16 @@ char *get_JSON() {
     buf_fail = (char*)malloc(len_fail);
     if (buf_fail == NULL)
     {
-        printf("Failed to allocate memory.\n");
+        printf("Falha ao alocar memória.\n");
         exit(1);
     }
 
-    /* Print to buffer */
     if (!cJSON_PrintPreallocated(root, buf, (int)len, 1)) {
-        printf("cJSON_PrintPreallocated failed!\n");
+        printf("cJSON_PrintPreallocated falhou!\n");
         if (strcmp(out, buf) != 0) {
-            printf("cJSON_PrintPreallocated not the same as cJSON_Print!\n");
-            printf("cJSON_Print result:\n%s\n", out);
-            printf("cJSON_PrintPreallocated result:\n%s\n", buf);
+            printf("cJSON_PrintPreallocated não é o mesmo que cJSON_Print!\n");
+            printf("Resultado de cJSON_Print:\n%s\n", out);
+            printf("Resultado de cJSON_PrintPreallocated:\n%s\n", buf);
         }
         free(out);
         free(buf_fail);
@@ -114,11 +113,10 @@ char *get_JSON() {
         return NULL;
     }
 
-    /* force it to fail */
     if (cJSON_PrintPreallocated(root, buf_fail, (int)len_fail, 1)) {
-        printf("cJSON_PrintPreallocated failed to show error with insufficient memory!\n");
-        printf("cJSON_Print result:\n%s\n", out);
-        printf("cJSON_PrintPreallocated result:\n%s\n", buf_fail);
+        printf("cJSON_PrintPreallocated falhou ao mostrar o erro com memória insuficiente!\n");
+        printf("Resultado de cJSON_Print:\n%s\n", out);
+        printf("Resultado de cJSON_PrintPreallocated:\n%s\n", buf_fail);
         free(out);
         free(buf_fail);
         free(buf);

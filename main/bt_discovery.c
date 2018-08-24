@@ -1,13 +1,15 @@
 
 #include "bt_sail.h"
+#include "wifi.h"
+#include <stdio.h>
 
-char* json;
+char *json;
 
 void result_callback(char *addr) {
 	printf("Dispositivo encontrado: %s\n",addr);
 }
 
-void app_main() {
+void app_main(void) {
     
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -37,16 +39,20 @@ void app_main() {
         return;
     }
 
-    paired_devices();
-    bt_start("ESP32_SAIL");
+    initialize_wifi();
+    set_date_time();
 
+    paired_devices();
+    bt_start("BT_SAIL");
+    
     while(true){
-		start_scan(SCANTIME);
+        start_scan(SCANTIME);
         json = get_JSON();
         if (json == NULL)
             exit(EXIT_FAILURE);
         else
             printf("%s\n",json);
+        send_data(json);
         free(json);
         delay(10); //Em segundos
     }

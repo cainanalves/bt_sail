@@ -23,7 +23,8 @@ utils.o: /home/cainan/esp/bt_sail/main/utils.c \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/time.h \
- /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h
+ /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/time.h
 
 /home/cainan/esp/bt_sail/main/utils.h:
 
@@ -74,4 +75,6 @@ utils.o: /home/cainan/esp/bt_sail/main/utils.c \
 /home/cainan/esp/esp-idf/components/newlib/include/time.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/time.h:
 /home/cainan/esp/bt_sail/main/./utils.c:

@@ -16,3 +16,9 @@ void delay(int sec) {
 	clock_t start_time = clock();
 	while (clock() < start_time + msec);
 }
+
+int get_timestamp(void) {
+    struct timeval *timestamp;
+    gettimeofday(&timestamp, NULL);
+    return timestamp;
+}

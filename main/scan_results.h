@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "utils.h"
@@ -12,16 +11,16 @@ typedef struct scan_result {
 	struct scan_result *next;
 } scan_result;
 
-void start_scan_result();
+void start_scan_result(void);
 
-void print_scan_result();
+void print_scan_result(void);
 
 void found_device(char *addr, void (*scanResultCallback)(char *addr));
 
-int get_size_scan_result();
+int get_size_scan_result(void);
 
-void clear_scan_result();
+void clear_scan_result(void);
 
 bool exists(char *addr);
 
-char *get_JSON();
+char *get_JSON(void);

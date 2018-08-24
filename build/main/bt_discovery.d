@@ -98,7 +98,58 @@ bt_discovery.o: /home/cainan/esp/bt_sail/main/bt_discovery.c \
  /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h \
- /home/cainan/esp/bt_sail/main/cJSON.h
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/time.h \
+ /home/cainan/esp/bt_sail/main/cJSON.h \
+ /home/cainan/esp/bt_sail/main/wifi.h \
+ /home/cainan/esp/bt_sail/main/settings_wifi.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/event_groups.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/timers.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/task.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/esp_wifi.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/queue.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/rom/queue.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_types.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/esp_interface.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_crypto_types.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/esp_event.h \
+ /home/cainan/esp/esp-idf/components/tcpip_adapter/include/tcpip_adapter.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/rom/queue.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_types.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/ip_addr.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/unistd.h \
+ /home/cainan/esp/esp-idf/components/newlib/platform_include/sys/unistd.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/unistd.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/fcntl.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/_default_fcntl.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/stat.h \
+ /home/cainan/esp/esp-idf/components/vfs/include/sys/ioctl.h \
+ /home/cainan/esp/esp-idf/components/newlib/platform_include/sys/select.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/debug.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/arch.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h \
+ /home/cainan/esp/esp-idf/components/newlib/platform_include/errno.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/errno.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/errno.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/semphr.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/queue.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arch/vfs_lwip.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/def.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/ip4_addr.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/ip6_addr.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/dhcpserver.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_os_adapter.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/esp_event_loop.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/err.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/sys.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/dns.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp_opts.h
 
 /home/cainan/esp/bt_sail/main/bt_sail.h:
 
@@ -298,5 +349,107 @@ bt_discovery.o: /home/cainan/esp/bt_sail/main/bt_discovery.c \
 
 /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h:
 
+/home/cainan/esp/esp-idf/components/newlib/include/sys/time.h:
+
 /home/cainan/esp/bt_sail/main/cJSON.h:
+
+/home/cainan/esp/bt_sail/main/wifi.h:
+
+/home/cainan/esp/bt_sail/main/settings_wifi.h:
+
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/event_groups.h:
+
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/timers.h:
+
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/task.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/esp_wifi.h:
+
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/queue.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/rom/queue.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_types.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/esp_interface.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_crypto_types.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/esp_event.h:
+
+/home/cainan/esp/esp-idf/components/tcpip_adapter/include/tcpip_adapter.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/rom/queue.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_types.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/ip_addr.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/unistd.h:
+
+/home/cainan/esp/esp-idf/components/newlib/platform_include/sys/unistd.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/unistd.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/fcntl.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/_default_fcntl.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/stat.h:
+
+/home/cainan/esp/esp-idf/components/vfs/include/sys/ioctl.h:
+
+/home/cainan/esp/esp-idf/components/newlib/platform_include/sys/select.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/debug.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/arch.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arch/cc.h:
+
+/home/cainan/esp/esp-idf/components/newlib/platform_include/errno.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/errno.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/errno.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h:
+
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/semphr.h:
+
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/queue.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arch/vfs_lwip.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/def.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/ip4_addr.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/ip6_addr.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/dhcpserver.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_os_adapter.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/esp_event_loop.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/err.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/sys.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/dns.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp_opts.h:
 /home/cainan/esp/bt_sail/main/./bt_discovery.c:

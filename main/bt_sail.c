@@ -52,7 +52,7 @@ void bt_start(char *name) {
     
 }
 
-void paired_devices() {
+void paired_devices(void) {
   int dev_num = esp_bt_gap_get_bond_device_num();
   esp_bd_addr_t *dev_list = (esp_bd_addr_t *)malloc(sizeof(esp_bd_addr_t) * dev_num);
   esp_bt_gap_get_bond_device_list(&dev_num, dev_list);
