@@ -1,5 +1,5 @@
 sntp.o: /home/cainan/esp/bt_sail/main/sntp.c \
- /home/cainan/esp/bt_sail/main/sntp.h \
+ /home/cainan/esp/bt_sail/main/wifi.h \
  /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/_ansi.h \
@@ -20,7 +20,6 @@ sntp.o: /home/cainan/esp/bt_sail/main/sntp.c \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/sched.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/time.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_attr.h \
- /home/cainan/esp/bt_sail/main/settings_wifi.h \
  /home/cainan/esp/esp-idf/components/newlib/include/string.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h \
@@ -140,7 +139,7 @@ sntp.o: /home/cainan/esp/bt_sail/main/sntp.c \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp_opts.h
 
-/home/cainan/esp/bt_sail/main/sntp.h:
+/home/cainan/esp/bt_sail/main/wifi.h:
 
 /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h:
 
@@ -181,8 +180,6 @@ sntp.o: /home/cainan/esp/bt_sail/main/sntp.c \
 /home/cainan/esp/esp-idf/components/newlib/include/sys/time.h:
 
 /home/cainan/esp/esp-idf/components/esp32/include/esp_attr.h:
-
-/home/cainan/esp/bt_sail/main/settings_wifi.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/string.h:
 

@@ -19,53 +19,6 @@ void initialize_wifi() {
     ESP_ERROR_CHECK( esp_wifi_start() );
 }
 
-void initialize_sntp() {
-    ESP_LOGI(TAG, "Inicializando SNTP");
-    sntp_setoperatingmode(SNTP_OPMODE_POLL);
-    sntp_setservername(0, "pool.ntp.org");
-    sntp_init();
-}
-
-void set_date_time(){
-    time_t now;
-    struct tm timeinfo;
-    time(&now);
-
-    localtime_r(&now, &timeinfo);
-    if (timeinfo.tm_year < (2016 - 1900)) {
-        ESP_LOGI(TAG, "Conectando-se ao WiFi e obtendo o tempo através do Network Time Protocol (NTP).");
-        obtain_time_sntp();
-        time(&now);
-    }
-    char strftime_buf[64];
-
-    setenv("TZ", "EST5EDT,M3.2.0/2,M11.1.0", 1);
-    tzset();
-    localtime_r(&now, &timeinfo);
-    strftime(strftime_buf, sizeof(strftime_buf), "%c", &timeinfo);
-    printf("Data/Hora: %s\n", strftime_buf);
-}
-
-void obtain_time_sntp() {
-    ESP_ERROR_CHECK( nvs_flash_init() );
-    xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT,
-                        false, true, portMAX_DELAY);
-    initialize_sntp();
-
-    time_t now = 0;
-    struct tm timeinfo = { 0 };
-    int retry = 0;
-    const int retry_count = 10;
-    while(timeinfo.tm_year < (2016 - 1900) && ++retry < retry_count) {
-        ESP_LOGI(TAG, "Aguardando que a hora do sistema seja definida ... (%d/%d)", retry, retry_count);
-        vTaskDelay(2000 / portTICK_PERIOD_MS);
-        time(&now);
-        localtime_r(&now, &timeinfo);
-    }
-
-    ESP_ERROR_CHECK( esp_wifi_stop() );
-}
-
 esp_err_t wifi_event_handler(void *ctx, system_event_t *event) {
     switch(event->event_id) {
     case SYSTEM_EVENT_STA_START:
@@ -179,4 +132,52 @@ void send_data(char *data) {
     close(s);
 
     ESP_LOGI(TAG, "Starting again!");
+}
+
+
+void initialize_sntp() {
+    ESP_LOGI(TAG, "Inicializando SNTP");
+    sntp_setoperatingmode(SNTP_OPMODE_POLL);
+    sntp_setservername(0, "pool.ntp.org");
+    sntp_init();
+}
+
+void obtain_time_sntp() {
+    ESP_ERROR_CHECK( nvs_flash_init() );
+    xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT,
+                        false, true, portMAX_DELAY);
+    initialize_sntp();
+
+    time_t now = 0;
+    struct tm timeinfo = { 0 };
+    int retry = 0;
+    const int retry_count = 10;
+    while(timeinfo.tm_year < (2016 - 1900) && ++retry < retry_count) {
+        ESP_LOGI(TAG, "Aguardando que a hora do sistema seja definida ... (%d/%d)", retry, retry_count);
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
+        time(&now);
+        localtime_r(&now, &timeinfo);
+    }
+
+    ESP_ERROR_CHECK( esp_wifi_stop() );
+}
+
+void set_date_time(){
+    time_t now;
+    struct tm timeinfo;
+    time(&now);
+
+    localtime_r(&now, &timeinfo);
+    if (timeinfo.tm_year < (2016 - 1900)) {
+        ESP_LOGI(TAG, "Conectando-se ao WiFi e obtendo o tempo através do Network Time Protocol (NTP).");
+        obtain_time_sntp();
+        time(&now);
+    }
+    char strftime_buf[64];
+
+    setenv("TZ", "EST5EDT,M3.2.0/2,M11.1.0", 1);
+    tzset();
+    localtime_r(&now, &timeinfo);
+    strftime(strftime_buf, sizeof(strftime_buf), "%c", &timeinfo);
+    printf("Data/Hora: %s\n", strftime_buf);
 }

@@ -20,7 +20,6 @@ wifi.o: /home/cainan/esp/bt_sail/main/wifi.c \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/sched.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/time.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_attr.h \
- /home/cainan/esp/bt_sail/main/settings_wifi.h \
  /home/cainan/esp/esp-idf/components/newlib/include/string.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h \
@@ -181,8 +180,6 @@ wifi.o: /home/cainan/esp/bt_sail/main/wifi.c \
 /home/cainan/esp/esp-idf/components/newlib/include/sys/time.h:
 
 /home/cainan/esp/esp-idf/components/esp32/include/esp_attr.h:
-
-/home/cainan/esp/bt_sail/main/settings_wifi.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/string.h:
 

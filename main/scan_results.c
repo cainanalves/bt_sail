@@ -1,16 +1,9 @@
-#include "scan_results.h"
+#include "bluetooth.h"
+#include "cJSON.h"
 
 scan_result *sc_rst;
 
-void start_scan_result(void) { sc_rst = NULL; }
-
-void print_scan_result(void) {
-	scan_result *aux = sc_rst;
-	while(aux != NULL){
-		printf("%s\n",aux->mac);
-		aux = aux->next;	
-	}
-}
+void start_scan_result() { sc_rst = NULL; }
 
 scan_result *new_address(char *addr) {
     scan_result *newaddress = (scan_result *) malloc(sizeof(scan_result));
@@ -30,7 +23,7 @@ void found_device(char *addr, void (* scan_result_callback)(char *addr)) {
     scan_result_callback(newaddress->mac);
 }
 
-int get_size_scan_result(void) {
+int get_size_scan_result() {
 	scan_result *sc = sc_rst;
 	int count = 0;
 	while(sc != NULL){
@@ -40,7 +33,7 @@ int get_size_scan_result(void) {
 	return count;
 }
 
-void clear_scan_result(void) { free(sc_rst); }
+void clear_scan_result() { free(sc_rst); }
 
 bool exists(char *addr) {
 	scan_result *aux = sc_rst;
@@ -52,29 +45,25 @@ bool exists(char *addr) {
 	return false;
 }
 
-cJSON *create_JSON(void) {
-    
+cJSON *create_JSON() {   
     cJSON *root = NULL;
-    int length = get_size_scan_result(), pos = 0;
-    char *macs[length];
-
-
-    root = cJSON_CreateObject();
-    scan_result *aux = sc_rst;
-    
+    int length = get_size_scan_result();
+    int pos = 0;
+	char *macs[length];
+	scan_result *aux = sc_rst;
     while(aux != NULL){
 		macs[pos] = aux->mac;
+		printf("mac %d: %s\n",pos,macs[pos]);
 		pos++;
 		aux = aux->next;
     }
+    root = cJSON_CreateObject();
     cJSON_AddNumberToObject(root, "timestamp", get_timestamp()); 
 	cJSON_AddItemToObject(root, "mac", cJSON_CreateStringArray(macs, length));
-    
 	return root;
 }
 
-char *get_JSON(void) {
-    
+char *get_JSON() {
     char *out = NULL;
     char *buf = NULL;
     char *buf_fail = NULL;

@@ -21,6 +21,11 @@ utils.o: /home/cainan/esp/bt_sail/main/utils.c \
  /home/cainan/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/sched.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/alloca.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/string.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h \
  /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h \
@@ -69,6 +74,16 @@ utils.o: /home/cainan/esp/bt_sail/main/utils.c \
 /home/cainan/esp/esp-idf/components/newlib/include/sys/sched.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/alloca.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/string.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/string.h:
 
 /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h:
 

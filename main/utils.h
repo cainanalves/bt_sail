@@ -1,8 +1,10 @@
 #include "esp_bt_defs.h"
 #include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include <sys/time.h>
-#include <stdint.h>
 #include <stdbool.h>
 
 
