@@ -13,3 +13,5 @@ char *bda2str(esp_bd_addr_t bda, char *str, size_t size);
 void delay(int sec);
 
 int get_timestamp(void);
+
+void set_date_and_time(void);

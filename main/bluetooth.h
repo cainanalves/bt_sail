@@ -38,11 +38,9 @@ typedef struct scan_result {
 	struct scan_result *next;
 } scan_result;
 
-static app_gap_cb_t m_dev_info;
+void initialize_bt(char *name);
 
-void bt_start(char *name);
-
-void paired_devices(void);
+void get_paired_devices(void);
 
 void update_device_info(esp_bt_gap_cb_param_t *param);
 

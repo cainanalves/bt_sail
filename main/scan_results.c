@@ -49,72 +49,23 @@ cJSON *create_JSON() {
     cJSON *root = NULL;
     int length = get_size_scan_result();
     int pos = 0;
-	char *macs[length];
+	char *devices[length];
 	scan_result *aux = sc_rst;
     while(aux != NULL){
-		macs[pos] = aux->mac;
-		printf("mac %d: %s\n",pos,macs[pos]);
+		devices[pos] = aux->mac;
 		pos++;
 		aux = aux->next;
     }
     root = cJSON_CreateObject();
     cJSON_AddNumberToObject(root, "timestamp", get_timestamp()); 
-	cJSON_AddItemToObject(root, "mac", cJSON_CreateStringArray(macs, length));
+	cJSON_AddItemToObject(root, "devices", cJSON_CreateStringArray(devices, length));
 	return root;
 }
 
 char *get_JSON() {
     char *out = NULL;
-    char *buf = NULL;
-    char *buf_fail = NULL;
-    size_t len = 0;
-    size_t len_fail = 0;
-
     cJSON *root = create_JSON();
-    out = cJSON_Print(root);
-
-    len = strlen(out) + 5;
-    buf = (char*)malloc(len);
-    if (buf == NULL)
-    {
-        printf("Falha ao alocar memória.\n");
-        exit(1);
-    }
-
-    len_fail = strlen(out);
-    buf_fail = (char*)malloc(len_fail);
-    if (buf_fail == NULL)
-    {
-        printf("Falha ao alocar memória.\n");
-        exit(1);
-    }
-
-    if (!cJSON_PrintPreallocated(root, buf, (int)len, 1)) {
-        printf("cJSON_PrintPreallocated falhou!\n");
-        if (strcmp(out, buf) != 0) {
-            printf("cJSON_PrintPreallocated não é o mesmo que cJSON_Print!\n");
-            printf("Resultado de cJSON_Print:\n%s\n", out);
-            printf("Resultado de cJSON_PrintPreallocated:\n%s\n", buf);
-        }
-        free(out);
-        free(buf_fail);
-        free(buf);
-        return NULL;
-    }
-
-    if (cJSON_PrintPreallocated(root, buf_fail, (int)len_fail, 1)) {
-        printf("cJSON_PrintPreallocated falhou ao mostrar o erro com memória insuficiente!\n");
-        printf("Resultado de cJSON_Print:\n%s\n", out);
-        printf("Resultado de cJSON_PrintPreallocated:\n%s\n", buf_fail);
-        free(out);
-        free(buf_fail);
-        free(buf);
-        return NULL;
-    }
-
-    free(out);
-    free(buf_fail);
-    //free(buf);
+    out = cJSON_PrintUnformatted(root);
     cJSON_Delete(root);
-    return buf;
+    return out;
 }

@@ -2098,45 +2098,6 @@ CJSON_PUBLIC(cJSON *) cJSON_DetachItemViaPointer(cJSON *parent, cJSON * const it
     return item;
 }
 
-CJSON_PUBLIC(cJSON *) cJSON_DetachItemFromArray(cJSON *array, int which)
-{
-    if (which < 0)
-    {
-        return NULL;
-    }
-
-    return cJSON_DetachItemViaPointer(array, get_array_item(array, (size_t)which));
-}
-
-CJSON_PUBLIC(void) cJSON_DeleteItemFromArray(cJSON *array, int which)
-{
-    cJSON_Delete(cJSON_DetachItemFromArray(array, which));
-}
-
-CJSON_PUBLIC(cJSON *) cJSON_DetachItemFromObject(cJSON *object, const char *string)
-{
-    cJSON *to_detach = cJSON_GetObjectItem(object, string);
-
-    return cJSON_DetachItemViaPointer(object, to_detach);
-}
-
-CJSON_PUBLIC(cJSON *) cJSON_DetachItemFromObjectCaseSensitive(cJSON *object, const char *string)
-{
-    cJSON *to_detach = cJSON_GetObjectItemCaseSensitive(object, string);
-
-    return cJSON_DetachItemViaPointer(object, to_detach);
-}
-
-CJSON_PUBLIC(void) cJSON_DeleteItemFromObject(cJSON *object, const char *string)
-{
-    cJSON_Delete(cJSON_DetachItemFromObject(object, string));
-}
-
-CJSON_PUBLIC(void) cJSON_DeleteItemFromObjectCaseSensitive(cJSON *object, const char *string)
-{
-    cJSON_Delete(cJSON_DetachItemFromObjectCaseSensitive(object, string));
-}
-
 /* Replace array/object items with new ones. */
 CJSON_PUBLIC(void) cJSON_InsertItemInArray(cJSON *array, int which, cJSON *newitem)
 {

@@ -1,5 +1,11 @@
 #include "wifi.h"
 
+static EventGroupHandle_t wifi_event_group;
+
+static const char *TAG = "WiFi_SAIL";
+
+
+
 void initialize_wifi() {
     tcpip_adapter_init();
     wifi_event_group = xEventGroupCreate();
@@ -39,15 +45,16 @@ esp_err_t wifi_event_handler(void *ctx, system_event_t *event) {
 }
 
 void send_data(char *data) {
-
-    char REQUEST[5000];
-    strcat(REQUEST,"GET ");
+    printf("length JSON: %d\n",strlen(data));
+    char REQUEST[strlen(data) + 180];
+    strcat(REQUEST,"POST /");
     strcat(REQUEST,WEB_URL);
-    strcat(REQUEST," HTTP/1.0\r\nHost: ");
+    strcat(REQUEST," HTTP/1.1\r\nHost: ");
     strcat(REQUEST,WEB_SERVER);
-    strcat(REQUEST,"\r\nContent-Type: application/json");
+    strcat(REQUEST,"\r\nContent-Type: application/json\r\n ");
     strcat(REQUEST,data);
-    strcat(REQUEST,"\r\n\r\n");
+    strcat(REQUEST,"\r\n\r\n\0");
+    printf("%s\n\n",REQUEST);
 
     const struct addrinfo hints = {
         .ai_family = AF_INET,
@@ -65,7 +72,7 @@ void send_data(char *data) {
                         false, true, portMAX_DELAY);
     ESP_LOGI(TAG, "Connected to AP");
 
-    int err = getaddrinfo(WEB_SERVER, "80", &hints, &res);
+    int err = getaddrinfo(WEB_SERVER, "5000", &hints, &res);
 
     if(err != 0 || res == NULL) {
         ESP_LOGE(TAG, "DNS lookup failed err=%d res=%p", err, res);
@@ -133,7 +140,6 @@ void send_data(char *data) {
 
     ESP_LOGI(TAG, "Starting again!");
 }
-
 
 void initialize_sntp() {
     ESP_LOGI(TAG, "Inicializando SNTP");
