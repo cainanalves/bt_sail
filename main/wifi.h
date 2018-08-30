@@ -27,8 +27,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#define WIFI_SSID ""
-#define WIFI_PASS ""
+#define WIFI_SSID "UFRN_CERES"
+#define WIFI_PASS "UFRN@1306"
 
 #define WEB_SERVER "" //api.thingspeak.com | 10.142.70.238 | 192.168.2.104
 #define WEB_PORT 5000
@@ -46,4 +46,6 @@ void obtain_time_sntp(void);
 
 esp_err_t wifi_event_handler(void *ctx, system_event_t *event);
 
-void send_data(char *data);
+ssize_t process_http(int sockfd, char *host, char *page, char *poststr);
+
+void post_request(char *poststr);

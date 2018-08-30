@@ -1,10 +1,15 @@
 #include "wifi.h"
 
+#define SA      struct sockaddr
+#define MAXLINE 1000
+#define MAXSUB  200
+#define LISTENQ 1024
+
+extern int h_errno;
+
 static EventGroupHandle_t wifi_event_group;
 
 static const char *TAG = "WiFi_SAIL";
-
-
 
 void initialize_wifi() {
     tcpip_adapter_init();
@@ -42,103 +47,6 @@ esp_err_t wifi_event_handler(void *ctx, system_event_t *event) {
         break;
     }
     return ESP_OK;
-}
-
-void send_data(char *data) {
-    printf("length JSON: %d\n",strlen(data));
-    char REQUEST[strlen(data) + 180];
-    strcat(REQUEST,"POST /");
-    strcat(REQUEST,WEB_URL);
-    strcat(REQUEST," HTTP/1.1\r\nHost: ");
-    strcat(REQUEST,WEB_SERVER);
-    strcat(REQUEST,"\r\nContent-Type: application/json\r\n ");
-    strcat(REQUEST,data);
-    strcat(REQUEST,"\r\n\r\n\0");
-    printf("%s\n\n",REQUEST);
-
-    const struct addrinfo hints = {
-        .ai_family = AF_INET,
-        .ai_socktype = SOCK_STREAM,
-    };
-    struct addrinfo *res;
-    struct in_addr *addr;
-    int s, r;
-    char recv_buf[64];
-
-    /* Wait for the callback to set the CONNECTED_BIT in the
-       event group.
-    */
-    xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT,
-                        false, true, portMAX_DELAY);
-    ESP_LOGI(TAG, "Connected to AP");
-
-    int err = getaddrinfo(WEB_SERVER, "5000", &hints, &res);
-
-    if(err != 0 || res == NULL) {
-        ESP_LOGE(TAG, "DNS lookup failed err=%d res=%p", err, res);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        return;
-    }
-
-    /* Code to print the resolved IP.
-
-       Note: inet_ntoa is non-reentrant, look at ipaddr_ntoa_r for "real" code */
-    addr = &((struct sockaddr_in *)res->ai_addr)->sin_addr;
-    ESP_LOGI(TAG, "DNS lookup succeeded. IP=%s", inet_ntoa(*addr));
-
-    s = socket(res->ai_family, res->ai_socktype, 0);
-    if(s < 0) {
-        ESP_LOGE(TAG, "... Failed to allocate socket.");
-        freeaddrinfo(res);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        return;
-    }
-    ESP_LOGI(TAG, "... allocated socket");
-
-    if(connect(s, res->ai_addr, res->ai_addrlen) != 0) {
-        ESP_LOGE(TAG, "... socket connect failed errno=%d", errno);
-        close(s);
-        freeaddrinfo(res);
-        vTaskDelay(4000 / portTICK_PERIOD_MS);
-        return;
-    }
-
-    ESP_LOGI(TAG, "... connected");
-    freeaddrinfo(res);
-
-    if (write(s, REQUEST, strlen(REQUEST)) < 0) {
-        ESP_LOGE(TAG, "... socket send failed");
-        close(s);
-        vTaskDelay(4000 / portTICK_PERIOD_MS);
-        return;
-    }
-    ESP_LOGI(TAG, "... socket send success");
-
-    struct timeval receiving_timeout;
-    receiving_timeout.tv_sec = 5;
-    receiving_timeout.tv_usec = 0;
-    if (setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &receiving_timeout,
-            sizeof(receiving_timeout)) < 0) {
-        ESP_LOGE(TAG, "... failed to set socket receiving timeout");
-        close(s);
-        vTaskDelay(4000 / portTICK_PERIOD_MS);
-        return;
-    }
-    ESP_LOGI(TAG, "... set socket receiving timeout success");
-
-    /* Read HTTP response */
-    do {
-        bzero(recv_buf, sizeof(recv_buf));
-        r = read(s, recv_buf, sizeof(recv_buf)-1);
-        for(int i = 0; i < r; i++) {
-            putchar(recv_buf[i]);
-        }
-    } while(r > 0);
-
-    ESP_LOGI(TAG, "... done reading from socket. Last read return=%d errno=%d\r\n", r, errno);
-    close(s);
-
-    ESP_LOGI(TAG, "Starting again!");
 }
 
 void initialize_sntp() {
@@ -186,4 +94,61 @@ void set_date_time(){
     localtime_r(&now, &timeinfo);
     strftime(strftime_buf, sizeof(strftime_buf), "%c", &timeinfo);
     printf("Data/Hora: %s\n", strftime_buf);
+}
+
+ssize_t process_http(int sockfd, char *host, char *page, char *poststr) {
+  char sendline[MAXLINE + 1], recvline[MAXLINE + 1];
+  ssize_t n;
+  snprintf(sendline, MAXSUB,
+      "POST %s HTTP/1.1\r\n"
+      "Host: %s\r\n"
+      "Content-type: application/json\r\n"
+      "Content-length: %d\r\n\r\n"
+      "%s", page, host, strlen(poststr), poststr);
+  printf("%s\n",sendline);
+
+  write(sockfd, sendline, strlen(sendline));
+  while ((n = read(sockfd, recvline, MAXLINE)) > 0) {
+    recvline[n] = '\r\n\0';
+    printf("%s", recvline);
+  }
+  return n;
+}
+
+void post_request(char *poststr) {
+  int sockfd;
+  struct sockaddr_in servaddr;
+
+  char **pptr;
+  //********** You can change. Puy any values here *******
+  char *hname = "10.142.70.238"; //
+  char *page = "/sensors/scan/1"; // /sensors/scan/Tokin
+  //char *poststr = "{\"timestamp\":535653656,\"devices\":\"5C:3E:2A:10:43:23\"}\r\n";
+
+  //*******************************************************
+
+  char str[50];
+  struct hostent *hptr;
+
+  hptr = gethostbyname(hname);
+  if (hptr == NULL) {
+    printf("Não foi possível encontrar %s\n",hname);
+  }
+
+  printf("hostname: %s\n", hptr->h_name);
+
+  if ((hptr->h_addrtype == AF_INET) && ((pptr = hptr->h_addr_list) != NULL)) {
+    printf("address: %s\n",inet_ntop(hptr->h_addrtype, *pptr, str,sizeof(str)));
+  }
+
+  sockfd = socket(AF_INET, SOCK_STREAM, 0);
+  bzero(&servaddr, sizeof(servaddr));
+
+  servaddr.sin_family = AF_INET;
+  servaddr.sin_port = htons(5000);
+  
+  inet_pton(AF_INET, str, &servaddr.sin_addr);
+  connect(sockfd, (SA *) & servaddr, sizeof(servaddr));
+  process_http(sockfd, hname, page, poststr);
+  close(sockfd);
 }
