@@ -1,10 +1,5 @@
 #include "wifi.h"
 
-#define SA      struct sockaddr
-#define MAXLINE 1000
-#define MAXSUB  200
-#define LISTENQ 1024
-
 extern int h_errno;
 
 static EventGroupHandle_t wifi_event_group;
@@ -83,7 +78,7 @@ void set_date_time(){
 
     localtime_r(&now, &timeinfo);
     if (timeinfo.tm_year < (2016 - 1900)) {
-        ESP_LOGI(TAG, "Conectando-se ao WiFi e obtendo o tempo através do Network Time Protocol (NTP).");
+        ESP_LOGI(TAG, "Obtendo o tempo através do Simple Network Time Protocol (SNTP).");
         obtain_time_sntp();
         time(&now);
     }
@@ -96,7 +91,7 @@ void set_date_time(){
     printf("Data/Hora: %s\n", strftime_buf);
 }
 
-ssize_t process_http(int sockfd, char *host, char *page, char *poststr) {
+ssize_t process_http(int sockfd, char *poststr) {
   char sendline[MAXLINE + 1], recvline[MAXLINE + 1];
   ssize_t n;
   snprintf(sendline, MAXSUB,
@@ -104,7 +99,7 @@ ssize_t process_http(int sockfd, char *host, char *page, char *poststr) {
       "Host: %s\r\n"
       "Content-type: application/json\r\n"
       "Content-length: %d\r\n\r\n"
-      "%s", page, host, strlen(poststr), poststr);
+      "%s", WEB_URL, WEB_SERVER, strlen(poststr), poststr);
   printf("%s\n",sendline);
 
   write(sockfd, sendline, strlen(sendline));
@@ -120,19 +115,12 @@ void post_request(char *poststr) {
   struct sockaddr_in servaddr;
 
   char **pptr;
-  //********** You can change. Puy any values here *******
-  char *hname = "10.142.70.238"; //
-  char *page = "/sensors/scan/1"; // /sensors/scan/Tokin
-  //char *poststr = "{\"timestamp\":535653656,\"devices\":\"5C:3E:2A:10:43:23\"}\r\n";
-
-  //*******************************************************
-
   char str[50];
   struct hostent *hptr;
 
-  hptr = gethostbyname(hname);
+  hptr = gethostbyname(WEB_SERVER);
   if (hptr == NULL) {
-    printf("Não foi possível encontrar %s\n",hname);
+    printf("Não foi possível encontrar %s\n",WEB_SERVER);
   }
 
   printf("hostname: %s\n", hptr->h_name);
@@ -145,10 +133,10 @@ void post_request(char *poststr) {
   bzero(&servaddr, sizeof(servaddr));
 
   servaddr.sin_family = AF_INET;
-  servaddr.sin_port = htons(5000);
+  servaddr.sin_port = htons(WEB_PORT);
   
   inet_pton(AF_INET, str, &servaddr.sin_addr);
   connect(sockfd, (SA *) & servaddr, sizeof(servaddr));
-  process_http(sockfd, hname, page, poststr);
+  process_http(sockfd, poststr);
   close(sockfd);
 }

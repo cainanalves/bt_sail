@@ -38,28 +38,38 @@ typedef struct scan_result {
 	struct scan_result *next;
 } scan_result;
 
+//Inicializar Bluetooth
 void initialize_bt(char *name);
 
-void get_paired_devices(void);
+//Imprimir dispositivos emparelhados
+void show_paired_devices(void);
 
-void update_device_info(esp_bt_gap_cb_param_t *param);
-
+//Manipulador de eventos Bluetooth
 void event_handler(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param);
 
+//Iniciar escaneamento
 void start_scan(int scan_time);
 
+//Parar escaneamento
 void stop_scan(void);
 
+//Iniciar serviço de resultado do escaneamento
 void start_scan_result();
 
+//Encaminhar dispositivo encontrado
 void found_device(char *addr, void (*scanResultCallback)(char *addr));
 
+//Pegar o tamanho da lista de dispositivos encontrados
 int get_size_scan_result();
 
+//Limpar lista de dispositivos encontrados
 void clear_scan_result();
 
+//callback para dispositivo encontrado
 void result_callback(char * addr);
 
+//Função para verificar se determinado endereço na lista de dispositivos encontrados
 bool exists(char *addr);
 
+//Pegar string em formato JSON contendo o timestamp atual e a lista de dispositivos encontrados
 char *get_JSON();

@@ -11,22 +11,7 @@ char *bda2str(esp_bd_addr_t bda, char *str, size_t size) {
     return str;
 }
 
-void delay(int sec) {
-	int msec = 1000 * sec;
-	clock_t start_time = clock();
-	while (clock() < start_time + msec);
-}
-
-char *get_timestamp(void) {
-    time_t *timestamp;
-    time(&timestamp);
-    char *str = (char *) malloc(sizeof(char)*20);
-    itoaa(timestamp, str, 10);
-    printf("%s\n",str);
-    return str;
-}
-
-char *itoaa (int value, char *result, int base) {
+char *int2str (int value, char *result, int base) {
     if (base < 2 || base > 36) { *result = '\0'; return result; }
 
     char* ptr = result, *ptr1 = result, tmp_char;
@@ -46,6 +31,20 @@ char *itoaa (int value, char *result, int base) {
         *ptr1++ = tmp_char;
     }
     return result;
+}
+
+void delay(int sec) {
+	int msec = 1000 * sec;
+	clock_t start_time = clock();
+	while (clock() < start_time + msec);
+}
+
+char *get_timestamp(void) {
+    time_t *timestamp;
+    time(&timestamp);
+    char *str = (char *) malloc(sizeof(char)*20);
+    int2str(timestamp, str, 10);
+    return str;
 }
 
 void set_date_and_time(void) {

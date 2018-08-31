@@ -27,25 +27,28 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#define WIFI_SSID "UFRN_CERES"
-#define WIFI_PASS "UFRN@1306"
+#define WIFI_SSID  "..::CAiNaN::.."
+#define WIFI_PASS  "98680850cainan"
 
-#define WEB_SERVER "" //api.thingspeak.com | 10.142.70.238 | 192.168.2.104
-#define WEB_PORT 5000
-#define WEB_URL "/" //https://api.thingspeak.com/channels/563469/bulk_update.json | /sensors/scan/1
+//POST request
+#define WEB_SERVER "10.142.70.238" 
+#define WEB_PORT   5000
+#define WEB_URL	   "/sensors/scan/1" 
+#define MAXLINE    1000
+#define MAXSUB     200
+#define SA 		   struct sockaddr
+//#define LISTENQ    1024
 
 static const int CONNECTED_BIT = BIT0;
 
+//Inicializar WiFi.
 void initialize_wifi(void);
 
-void initialize_sntp(void);
-
+//Setar hora e data na ESP32 de acordo com o servidor SNTP.
 void set_date_time(void);
 
-void obtain_time_sntp(void);
-
+//Manipulador de eventos WiFi.
 esp_err_t wifi_event_handler(void *ctx, system_event_t *event);
 
-ssize_t process_http(int sockfd, char *host, char *page, char *poststr);
-
+//Enviar dados como requisição POST para: WEB_SERVER; WEB_URL; WEB_PORT. 
 void post_request(char *poststr);
