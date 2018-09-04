@@ -1,9 +1,9 @@
 #include "wifi.h"
 
 //POST request -------------------------
-char web_server[15] = "192.168.2.104";
+char web_server[15] = "10.142.70.238";
 int web_port = 5000;
-char *web_url = "/"; 
+char *web_url = "/sensors/scan/1"; 
 //POST request -------------------------
 
 static EventGroupHandle_t wifi_event_group;

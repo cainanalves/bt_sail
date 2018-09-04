@@ -38,10 +38,10 @@ void app_main(void) {
     }
 
     initialize_wifi();
-    //set_date_time(); //<-- SNTP
+    set_date_time(); //<-- SNTP
     initialize_bt("BT_SAIL");
     show_paired_devices();
-    set_date_and_time(); //<-- para teste
+    //set_date_and_time(); //<-- para teste
     
     while(true){
         start_scan(SCANTIME);
