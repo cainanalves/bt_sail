@@ -3,7 +3,7 @@
 
 scan_result *sc_rst;
 
-void start_scan_result() { sc_rst = NULL; }
+void create_scan_result() { sc_rst = NULL; }
 
 scan_result *new_address(char *addr) {
     scan_result *newaddress = (scan_result *) malloc(sizeof(scan_result));

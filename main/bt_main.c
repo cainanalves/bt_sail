@@ -1,4 +1,4 @@
- #include "bluetooth.h"
+#include "bluetooth.h"
 #include "wifi.h"
 
 char *json;
@@ -38,17 +38,17 @@ void app_main(void) {
     }
 
     initialize_wifi();
-    set_date_time();
+    //set_date_time(); //<-- SNTP
     initialize_bt("BT_SAIL");
     show_paired_devices();
-    //set_date_and_time(); <-- para teste
+    set_date_and_time(); //<-- para teste
     
     while(true){
         start_scan(SCANTIME);
         json = get_JSON();
         if (json == NULL)
             exit(EXIT_FAILURE);
-        post_request(json,WEB_SERVER,WEB_URL,WEB_PORT);
+        post_request(json);
         free(json);
         delay(10); //Em segundos
     }

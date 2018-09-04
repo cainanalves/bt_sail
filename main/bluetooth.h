@@ -54,7 +54,7 @@ void start_scan(int scan_time);
 void stop_scan(void);
 
 //Iniciar serviço de resultado do escaneamento
-void start_scan_result();
+void create_scan_result();
 
 //Encaminhar dispositivo encontrado
 void found_device(char *addr, void (*scanResultCallback)(char *addr));

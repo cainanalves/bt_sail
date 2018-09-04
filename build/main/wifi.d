@@ -138,6 +138,7 @@ wifi.o: /home/cainan/esp/bt_sail/main/wifi.c \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/dns.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp_opts.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/posix/netdb.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arpa/inet.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/netinet/in.h \
  /home/cainan/esp/esp-idf/components/newlib/include/signal.h \
@@ -422,6 +423,8 @@ wifi.o: /home/cainan/esp/bt_sail/main/wifi.c \
 /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp.h:
 
 /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp_opts.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/posix/netdb.h:
 
 /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arpa/inet.h:
 

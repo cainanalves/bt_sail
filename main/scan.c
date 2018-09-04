@@ -9,6 +9,7 @@ void update_device_info(esp_bt_gap_cb_param_t *param) {
 void event_handler(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param) {
 
     switch (event) {
+        
         case ESP_BT_GAP_DISC_RES_EVT: {
             update_device_info(param);
             break;
@@ -33,7 +34,7 @@ void event_handler(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param) {
 void start_scan(int scan_time) {
     clear_scan_result();
     esp_bt_gap_start_discovery(ESP_BT_INQ_MODE_GENERAL_INQUIRY, 10, 0);
-    start_scan_result(); 
+    create_scan_result(); 
     delay(scan_time);
     stop_scan(); 
 }
