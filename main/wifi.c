@@ -91,7 +91,7 @@ void set_date_time(){
     printf("Data/Hora: %s\n", strftime_buf);
 }
 
-ssize_t process_http(int sockfd, char *poststr) {
+ssize_t process_http(int sockfd, char *poststr, char *web_server, char *web_url) {
   char sendline[MAXLINE + 1], recvline[MAXLINE + 1];
   ssize_t n;
   snprintf(sendline, MAXSUB,
@@ -99,7 +99,7 @@ ssize_t process_http(int sockfd, char *poststr) {
       "Host: %s\r\n"
       "Content-type: application/json\r\n"
       "Content-length: %d\r\n\r\n"
-      "%s", WEB_URL, WEB_SERVER, strlen(poststr), poststr);
+      "%s", web_url, web_server, strlen(poststr), poststr);
   printf("%s\n",sendline);
 
   write(sockfd, sendline, strlen(sendline));
@@ -110,7 +110,7 @@ ssize_t process_http(int sockfd, char *poststr) {
   return n;
 }
 
-void post_request(char *poststr) {
+void post_request(char *poststr,char *web_server, char *web_url, int web_port) {
   int sockfd;
   struct sockaddr_in servaddr;
 
@@ -118,9 +118,9 @@ void post_request(char *poststr) {
   char str[50];
   struct hostent *hptr;
 
-  hptr = gethostbyname(WEB_SERVER);
+  hptr = gethostbyname(web_server);
   if (hptr == NULL) {
-    printf("Não foi possível encontrar %s\n",WEB_SERVER);
+    printf("Não foi possível encontrar %s\n",web_server);
   }
 
   printf("hostname: %s\n", hptr->h_name);
@@ -133,10 +133,10 @@ void post_request(char *poststr) {
   bzero(&servaddr, sizeof(servaddr));
 
   servaddr.sin_family = AF_INET;
-  servaddr.sin_port = htons(WEB_PORT);
+  servaddr.sin_port = htons(web_port);
   
   inet_pton(AF_INET, str, &servaddr.sin_addr);
   connect(sockfd, (SA *) & servaddr, sizeof(servaddr));
-  process_http(sockfd, poststr);
+  process_http(sockfd,poststr,web_server,web_url);
   close(sockfd);
 }

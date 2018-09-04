@@ -1,4 +1,4 @@
-#include "bluetooth.h"
+ #include "bluetooth.h"
 #include "wifi.h"
 
 char *json;
@@ -48,7 +48,7 @@ void app_main(void) {
         json = get_JSON();
         if (json == NULL)
             exit(EXIT_FAILURE);
-        post_request(json);
+        post_request(json,WEB_SERVER,WEB_URL,WEB_PORT);
         free(json);
         delay(10); //Em segundos
     }

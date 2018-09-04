@@ -27,8 +27,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#define WIFI_SSID  "..::CAiNaN::.."
-#define WIFI_PASS  "98680850cainan"
+#define WIFI_SSID  "UFRN_CERES"
+#define WIFI_PASS  "UFRN@1306"
 
 //POST request
 #define WEB_SERVER "10.142.70.238" 
@@ -37,7 +37,7 @@
 #define MAXLINE    1000
 #define MAXSUB     200
 #define SA 		   struct sockaddr
-//#define LISTENQ    1024
+#define LISTENQ    1024
 
 static const int CONNECTED_BIT = BIT0;
 
@@ -51,4 +51,4 @@ void set_date_time(void);
 esp_err_t wifi_event_handler(void *ctx, system_event_t *event);
 
 //Enviar dados como requisição POST para: WEB_SERVER; WEB_URL; WEB_PORT. 
-void post_request(char *poststr);
+void post_request(char *poststr, char *web_server, char *web_url, int web_port);
