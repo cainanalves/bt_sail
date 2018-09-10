@@ -1,9 +1,9 @@
 #include "wifi.h"
 
 //POST request -------------------------
-char web_server[15] = "10.142.70.238";
+char web_server[15] = "10.142.70.238"; 
 int web_port = 5000;
-char *web_url = "/sensors/scan/1"; 
+char *web_url = "/scan/1";  
 //POST request -------------------------
 
 static EventGroupHandle_t wifi_event_group;
@@ -22,6 +22,7 @@ void initialize_wifi() {
             .password = WIFI_PASS,
         },
     };
+
     ESP_LOGI(TAG, "Configurando o WiFi com SSID %s ...", wifi_config.sta.ssid);
     ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
     ESP_ERROR_CHECK( esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config) );
@@ -30,19 +31,18 @@ void initialize_wifi() {
 
 esp_err_t wifi_event_handler(void *ctx, system_event_t *event) {
     switch(event->event_id) {
-    case SYSTEM_EVENT_STA_START:
-        esp_wifi_connect();
-        break;
-    case SYSTEM_EVENT_STA_GOT_IP:
-        xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
-        break;
-    case SYSTEM_EVENT_STA_DISCONNECTED:
-
-        esp_wifi_connect();
-        xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
-        break;
-    default:
-        break;
+        case SYSTEM_EVENT_STA_START:
+            esp_wifi_connect();
+            break;
+        case SYSTEM_EVENT_STA_GOT_IP:
+            xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
+            break;
+        case SYSTEM_EVENT_STA_DISCONNECTED:
+            esp_wifi_connect();
+            xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
+            break;
+        default:
+            break;
     }
     return ESP_OK;
 }
@@ -50,14 +50,13 @@ esp_err_t wifi_event_handler(void *ctx, system_event_t *event) {
 void initialize_sntp() {
     ESP_LOGI(TAG, "Inicializando SNTP");
     sntp_setoperatingmode(SNTP_OPMODE_POLL);
-    sntp_setservername(0, "pool.ntp.org");
+    sntp_setservername(0, "ntp.ufrn.br"); //pool.ntp.org
     sntp_init();
 }
 
 void obtain_time_sntp() {
     ESP_ERROR_CHECK( nvs_flash_init() );
-    xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT,
-                        false, true, portMAX_DELAY);
+    xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT, false, true, portMAX_DELAY);
     initialize_sntp();
 
     time_t now = 0;
@@ -70,8 +69,7 @@ void obtain_time_sntp() {
         time(&now);
         localtime_r(&now, &timeinfo);
     }
-
-    ESP_ERROR_CHECK( esp_wifi_stop() );
+    //ESP_ERROR_CHECK( esp_wifi_stop() );
 }
 
 void set_date_time(){
@@ -80,7 +78,7 @@ void set_date_time(){
     time(&now);
 
     localtime_r(&now, &timeinfo);
-    if (timeinfo.tm_year < (2016 - 1900)) {
+    if (timeinfo.tm_year < (2018 - 1900)) {
         ESP_LOGI(TAG, "Obtendo o tempo através do Simple Network Time Protocol (SNTP).");
         obtain_time_sntp();
         time(&now);

@@ -57,7 +57,8 @@ cJSON *create_JSON() {
 		aux = aux->next;
     }
     root = cJSON_CreateObject();
-    cJSON_AddStringToObject(root, "sensor", get_timestamp()); 
+	cJSON_AddNumberToObject(root,"sensor_id",1);
+    cJSON_AddStringToObject(root, "timestamp", get_timestamp()); 
 	cJSON_AddItemToObject(root, "mac", cJSON_CreateStringArray(devices, length));
 	return root;
 }

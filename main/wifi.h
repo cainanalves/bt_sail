@@ -28,8 +28,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#define WIFI_SSID  "SSID"
-#define WIFI_PASS  "PASSWORD"
+#define WIFI_SSID  "Salete"
+#define WIFI_PASS  "teixeira"
 #define SA      struct sockaddr
 #define MAXLINE 1000
 #define MAXSUB  200
