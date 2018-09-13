@@ -50,7 +50,7 @@ void app_main(void) {
             exit(EXIT_FAILURE);
         post_request(json);
         free(json);
-        delay(10); //Em segundos
+        delay(30); //Em segundos
     }
 	
 	

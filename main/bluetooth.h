@@ -11,7 +11,7 @@
 #include "utils.h"
 
 #define GAP_TAG          "GAP"
-#define SCANTIME          5
+#define SCANTIME          10
 
 typedef enum {
     APP_GAP_STATE_IDLE = 0,

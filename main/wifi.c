@@ -85,7 +85,7 @@ void set_date_time(){
     }
     char strftime_buf[64];
 
-    setenv("TZ", "EST5EDT,M3.2.0/2,M11.1.0", 1);
+    setenv("TZ", "BRT3BRST,M10.3.0,M2.3.0", 1); // <-- TimeZone 
     tzset();
     localtime_r(&now, &timeinfo);
     strftime(strftime_buf, sizeof(strftime_buf), "%c", &timeinfo);
