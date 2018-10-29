@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "wifi.h": "c",
+        "assert.h": "c",
+        "bluetooth.h": "c",
+        "errno.h": "c"
+    }
+}

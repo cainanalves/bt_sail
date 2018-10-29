@@ -26,6 +26,7 @@ deps_config := \
 	/home/cainan/esp/esp-idf/Kconfig.compiler \
 	/home/cainan/esp/esp-idf/components/bootloader/Kconfig.projbuild \
 	/home/cainan/esp/esp-idf/components/esptool_py/Kconfig.projbuild \
+	/home/cainan/esp/bt_sail/main/Kconfig.projbuild \
 	/home/cainan/esp/esp-idf/components/partition_table/Kconfig.projbuild \
 	/home/cainan/esp/esp-idf/Kconfig
 

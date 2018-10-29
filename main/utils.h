@@ -20,4 +20,4 @@ void delay(int sec);
 char *get_timestamp(void);
 
 //Função apenas para TESTE, a qual seta um timestamp inicial na esp32
-void set_date_and_time(void);
+void set_date_time(void);

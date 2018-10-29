@@ -28,23 +28,21 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#define WIFI_SSID  "SSID"
-#define WIFI_PASS  "PASSWORD"
+#define WIFI_SSID  "UFRN_CERES"
+#define WIFI_PASS  "UFRN@1306"          
 #define SA      struct sockaddr
 #define MAXLINE 1000
 #define MAXSUB  200
 #define LISTENQ 1024
 
-static const int CONNECTED_BIT = BIT0;
+extern EventGroupHandle_t wifi_event_group;
+extern const int CONNECTED_BIT;
 
 //Inicializar WiFi.
 void initialize_wifi(void);
 
 //Setar hora e data na ESP32 de acordo com o servidor SNTP.
-void set_date_time(void);
+void set_SNTP(void);
 
 //Manipulador de eventos WiFi.
 esp_err_t wifi_event_handler(void *ctx, system_event_t *event);
-
-//Enviar dados como requisição POST para: WEB_SERVER; WEB_URL; WEB_PORT. 
-void post_request(char *json);

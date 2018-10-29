@@ -6,7 +6,7 @@ int web_port = 5000;
 char *web_url = "/scan/1";  
 //POST request -------------------------
 
-static EventGroupHandle_t wifi_event_group;
+
 static const char *TAG = "WiFi_SAIL";
 
 void initialize_wifi() {
@@ -29,28 +29,12 @@ void initialize_wifi() {
     ESP_ERROR_CHECK( esp_wifi_start() );
 }
 
-esp_err_t wifi_event_handler(void *ctx, system_event_t *event) {
-    switch(event->event_id) {
-        case SYSTEM_EVENT_STA_START:
-            esp_wifi_connect();
-            break;
-        case SYSTEM_EVENT_STA_GOT_IP:
-            xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
-            break;
-        case SYSTEM_EVENT_STA_DISCONNECTED:
-            esp_wifi_connect();
-            xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
-            break;
-        default:
-            break;
-    }
-    return ESP_OK;
-}
+
 
 void initialize_sntp() {
     ESP_LOGI(TAG, "Inicializando SNTP");
     sntp_setoperatingmode(SNTP_OPMODE_POLL);
-    sntp_setservername(0, "ntp.ufrn.br"); //pool.ntp.org
+    sntp_setservername(0, "ntp.ufrn.br"); // pool.ntp.org
     sntp_init();
 }
 
@@ -72,7 +56,7 @@ void obtain_time_sntp() {
     //ESP_ERROR_CHECK( esp_wifi_stop() );
 }
 
-void set_date_time(){
+void set_SNTP(){
     time_t now;
     struct tm timeinfo;
     time(&now);
@@ -92,50 +76,3 @@ void set_date_time(){
     printf("Data/Hora: %s\n", strftime_buf);
 }
 
-void process_http(int sockfd, char *json) {
-    char sendline[MAXLINE + 1], recvline[MAXLINE + 1];
-    ssize_t n;
-    snprintf(sendline, MAXSUB,
-        "POST %s HTTP/1.1\r\n"
-        "Host: %s\r\n"
-        "Content-type: application/json\r\n"
-        "Content-length: %d\r\n\r\n"
-        "%s", web_url, web_server, strlen(json), json);
-    printf("%s\n",sendline);
-    write(sockfd, sendline, strlen(sendline));
-    while ((n = read(sockfd, recvline, MAXLINE)) > 0) {
-        recvline[n] = '\0';
-        printf("%s", recvline);
-    }
-}
-
-void post_request(char *json) {
-  int sockfd;
-  struct sockaddr_in servaddr;
-  char **pptr; 
-  char str[50];
-  struct hostent *hptr;
-  
-  if ((hptr = gethostbyname(web_server)) == NULL) {
-    printf("Não foi possível encontrar o host %s\n",web_server);
-  }
-
-  printf("hostname: %s\n", hptr->h_name);
-
-  if (hptr->h_addrtype == AF_INET && (pptr = hptr->h_addr_list) != NULL) {
-    printf("address: %s\n", inet_ntop(hptr->h_addrtype, *pptr, str,
-          sizeof(str)));
-  } else { 
-      fprintf(stderr, "Error call inet_ntop \n"); 
-    }
-
-  sockfd = socket(AF_INET, SOCK_STREAM, 0);
-  bzero(&servaddr, sizeof(servaddr));
-  servaddr.sin_family = AF_INET;
-  servaddr.sin_port = htons(web_port);
-  inet_pton(AF_INET, str, &servaddr.sin_addr);
-
-  connect(sockfd, (SA *) & servaddr, sizeof(servaddr));
-  process_http(sockfd, json);
-  close(sockfd);
-}

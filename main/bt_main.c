@@ -1,10 +1,36 @@
 #include "bluetooth.h"
 #include "wifi.h"
+#include "header.h"
 
+EventGroupHandle_t wifi_event_group = NULL;
+const int MQTT_PUBLISHED_BIT = BIT1;
+const int MQTT_INITIATE_PUBLISH_BIT = BIT2;
+const int CONNECTED_BIT = BIT0;
 char *json;
 
 void result_callback(char *addr) {
 	printf("Dispositivo encontrado: %s\n",addr);
+}
+
+esp_err_t wifi_event_handler(void *ctx, system_event_t *event) {
+    switch(event->event_id) {
+        case SYSTEM_EVENT_STA_START:
+            esp_wifi_connect();
+            break;
+        case SYSTEM_EVENT_STA_GOT_IP:
+            xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
+            gb_mqttClient = mqtt_start(&settings);
+            break;
+        case SYSTEM_EVENT_STA_DISCONNECTED:
+            esp_wifi_connect();
+            mqtt_stop();
+            gb_mqttClient = NULL;
+            xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
+            break;
+        default:
+            break;
+    }
+    return ESP_OK;
 }
 
 void app_main(void) {
@@ -38,19 +64,20 @@ void app_main(void) {
     }
 
     initialize_wifi();
-    set_date_time(); //<-- SNTP
-    initialize_bt("BT_SAIL");
-    show_paired_devices();
-    //set_date_and_time(); //<-- para teste
-    
-    while(true){
+    set_SNTP(); 
+    initialize_bt("BT_SAIL"); 
+    show_paired_devices(); 
+    //set_date_time(); //<-- para teste
+
+    while(true) {
         start_scan(SCANTIME);
         json = get_JSON();
         if (json == NULL)
             exit(EXIT_FAILURE);
-        post_request(json);
+        
+        publish(gb_mqttClient, NULL, json, "ESPsensor");
         free(json);
-        delay(30); //Em segundos
+        delay(10); //Em segundos
     }
 	
 	

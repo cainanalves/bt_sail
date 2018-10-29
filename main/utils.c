@@ -47,7 +47,7 @@ char *get_timestamp(void) {
     return str;
 }
 
-void set_date_and_time(void) {
+void set_date_time(void) {
     struct timeval tv;
     tv.tv_sec = 123456789; //segundos desde 01 Jan 1970. 
     settimeofday(&tv, NULL);
