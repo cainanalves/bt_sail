@@ -56,7 +56,7 @@ void stop_scan(void);
 //Iniciar serviço de resultado do escaneamento
 void create_scan_result();
 
-//Encaminhar dispositivo encontrado
+//Adicionar dispositivo encontrado à lista de resultados do escaneamento
 void found_device(char *addr, void (*scanResultCallback)(char *addr));
 
 //Pegar o tamanho da lista de dispositivos encontrados

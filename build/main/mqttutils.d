@@ -1,33 +1,33 @@
 mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
  /home/cainan/esp/bt_sail/main/mqttutils.h \
- /home/cainan/esp/bt_sail/main/header.h \
- /home/cainan/esp/esp-idf/components/newlib/include/stdio.h \
+ /home/cainan/esp/bt_sail/main/header_mqtt.h \
+ /home/cainan/esp/bt_sail/main/wifi.h \
+ /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/_ansi.h \
  /home/cainan/esp/esp-idf/components/newlib/include/newlib.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/config.h \
  /home/cainan/esp/esp-idf/components/newlib/include/machine/ieeefp.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/features.h \
  /home/cainan/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h \
- /home/cainan/esp/esp-idf/components/newlib/include/sys/cdefs.h \
- /home/cainan/esp/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/reent.h \
  /home/cainan/esp/esp-idf/components/newlib/include/_ansi.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/_types.h \
  /home/cainan/esp/esp-idf/components/newlib/include/machine/_types.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/lock.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/types.h \
  /home/cainan/esp/esp-idf/components/newlib/include/machine/types.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/sched.h \
- /home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/time.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/esp_attr.h \
  /home/cainan/esp/esp-idf/components/newlib/include/string.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h \
- /home/cainan/esp/esp-idf/components/newlib/include/stdlib.h \
- /home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h \
- /home/cainan/esp/esp-idf/components/newlib/include/alloca.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/cainan/esp/esp-idf/components/newlib/include/stdint.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/_intsup.h \
- /home/cainan/esp/esp-idf/components/esp32/include/esp_wifi.h \
- /home/cainan/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/cainan/esp/bt_sail/build/include/sdkconfig.h \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
@@ -40,6 +40,9 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h \
  /home/cainan/esp/esp-idf/components/esp32/include/xtensa/corebits.h \
  /home/cainan/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/alloca.h \
  /home/cainan/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/cainan/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_assert.h \
@@ -54,11 +57,12 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
  /home/cainan/esp/esp-idf/components/esp32/include/xtensa/xtruntime-core-state.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_crosscore_int.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_timer.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/stdio.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_err.h \
  /home/cainan/esp/esp-idf/components/heap/include/esp_heap_caps.h \
  /home/cainan/esp/esp-idf/components/heap/include/multi_heap.h \
  /home/cainan/esp/esp-idf/components/soc/include/soc/soc_memory_layout.h \
- /home/cainan/esp/esp-idf/components/esp32/include/esp_attr.h \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/portbenchmark.h \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/mpu_wrappers.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_system.h \
@@ -80,6 +84,13 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
  /home/cainan/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/xtensa_api.h \
  /home/cainan/esp/esp-idf/components/soc/esp32/include/soc/touch_channel.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/task.h \
+ /home/cainan/esp/esp-idf/components/newlib/include/limits.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/list.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/event_groups.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/timers.h \
+ /home/cainan/esp/esp-idf/components/freertos/include/freertos/task.h \
+ /home/cainan/esp/esp-idf/components/esp32/include/esp_wifi.h \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/queue.h \
  /home/cainan/esp/esp-idf/components/esp32/include/rom/queue.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_types.h \
@@ -92,13 +103,9 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/ip_addr.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/opt.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h \
- /home/cainan/esp/esp-idf/components/newlib/platform_include/time.h \
- /home/cainan/esp/esp-idf/components/newlib/include/time.h \
- /home/cainan/esp/esp-idf/components/newlib/include/machine/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/unistd.h \
  /home/cainan/esp/esp-idf/components/newlib/platform_include/sys/unistd.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/unistd.h \
- /home/cainan/esp/esp-idf/components/newlib/include/sys/time.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/fcntl.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/_default_fcntl.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/stat.h \
@@ -112,9 +119,6 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
  /home/cainan/esp/esp-idf/components/newlib/include/errno.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/errno.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h \
- /home/cainan/esp/esp-idf/components/freertos/include/freertos/task.h \
- /home/cainan/esp/esp-idf/components/newlib/include/limits.h \
- /home/cainan/esp/esp-idf/components/freertos/include/freertos/list.h \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/semphr.h \
  /home/cainan/esp/esp-idf/components/freertos/include/freertos/queue.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arch/vfs_lwip.h \
@@ -123,28 +127,17 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/ip6_addr.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/dhcpserver.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_os_adapter.h \
- /home/cainan/esp/esp-idf/components/nvs_flash/include/nvs_flash.h \
- /home/cainan/esp/esp-idf/components/nvs_flash/include/nvs.h \
  /home/cainan/esp/esp-idf/components/esp32/include/esp_event_loop.h \
- /home/cainan/esp/esp-idf/components/freertos/include/freertos/event_groups.h \
- /home/cainan/esp/esp-idf/components/freertos/include/freertos/timers.h \
- /home/cainan/esp/esp-idf/components/freertos/include/freertos/task.h \
- /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h \
- /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/err.h \
- /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h \
- /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/dns.h \
- /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h \
  /home/cainan/esp/esp-idf/components/log/include/esp_log.h \
  /home/cainan/esp/esp-idf/components/log/include/esp_log_internal.h \
- /home/cainan/esp/bt_sail/components/espmqtt/include/mqtt.h \
- /home/cainan/esp/bt_sail/components/espmqtt/include/mqtt_config.h \
- /home/cainan/esp/bt_sail/components/espmqtt/include/mqtt_msg.h \
- /home/cainan/esp/bt_sail/components/espmqtt/include/ringbuf.h \
- /home/cainan/esp/esp-idf/components/driver/include/driver/adc.h \
- /home/cainan/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h \
- /home/cainan/esp/esp-idf/components/esp_adc_cal/include/esp_adc_cal.h \
- /home/cainan/esp/bt_sail/main/wifi.h \
+ /home/cainan/esp/esp-idf/components/nvs_flash/include/nvs_flash.h \
+ /home/cainan/esp/esp-idf/components/nvs_flash/include/nvs.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/err.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/sys.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h \
+ /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/dns.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp_opts.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/posix/netdb.h \
@@ -153,13 +146,26 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
  /home/cainan/esp/esp-idf/components/newlib/include/signal.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/signal.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/posix/sys/socket.h \
- /home/cainan/esp/esp-idf/components/newlib/include/sys/wait.h
+ /home/cainan/esp/esp-idf/components/newlib/include/sys/wait.h \
+ /home/cainan/esp/bt_sail/components/espmqtt/include/mqtt.h \
+ /home/cainan/esp/bt_sail/components/espmqtt/include/mqtt_config.h \
+ /home/cainan/esp/bt_sail/components/espmqtt/include/mqtt_msg.h \
+ /home/cainan/esp/bt_sail/components/espmqtt/include/ringbuf.h \
+ /home/cainan/esp/esp-idf/components/esp_adc_cal/include/esp_adc_cal.h \
+ /home/cainan/esp/esp-idf/components/driver/include/driver/adc.h \
+ /home/cainan/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h \
+ /home/cainan/esp/bt_sail/main/utils.h \
+ /home/cainan/esp/esp-idf/components/bt/bluedroid/api/include/api/esp_bt_defs.h
 
 /home/cainan/esp/bt_sail/main/mqttutils.h:
 
-/home/cainan/esp/bt_sail/main/header.h:
+/home/cainan/esp/bt_sail/main/header_mqtt.h:
 
-/home/cainan/esp/esp-idf/components/newlib/include/stdio.h:
+/home/cainan/esp/bt_sail/main/wifi.h:
+
+/home/cainan/esp/esp-idf/components/newlib/platform_include/time.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/time.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/_ansi.h:
 
@@ -173,10 +179,6 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 
 /home/cainan/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h:
 
-/home/cainan/esp/esp-idf/components/newlib/include/sys/cdefs.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/machine/_default_types.h:
-
 /home/cainan/esp/esp-idf/components/newlib/include/sys/reent.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/_ansi.h:
@@ -185,7 +187,11 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 
 /home/cainan/esp/esp-idf/components/newlib/include/machine/_types.h:
 
+/home/cainan/esp/esp-idf/components/newlib/include/machine/_default_types.h:
+
 /home/cainan/esp/esp-idf/components/newlib/include/sys/lock.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/machine/time.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/sys/types.h:
 
@@ -193,25 +199,21 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 
 /home/cainan/esp/esp-idf/components/newlib/include/sys/sched.h:
 
-/home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h:
+/home/cainan/esp/esp-idf/components/newlib/include/sys/time.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/esp_attr.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/string.h:
 
+/home/cainan/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+
 /home/cainan/esp/esp-idf/components/newlib/include/sys/string.h:
 
-/home/cainan/esp/esp-idf/components/newlib/include/stdlib.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/alloca.h:
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/stdint.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/sys/_intsup.h:
-
-/home/cainan/esp/esp-idf/components/esp32/include/esp_wifi.h:
-
-/home/cainan/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/cainan/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
@@ -236,6 +238,12 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 /home/cainan/esp/esp-idf/components/esp32/include/xtensa/corebits.h:
 
 /home/cainan/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/alloca.h:
 
 /home/cainan/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -265,6 +273,10 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 
 /home/cainan/esp/esp-idf/components/esp32/include/esp_timer.h:
 
+/home/cainan/esp/esp-idf/components/newlib/include/stdio.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/sys/stdio.h:
+
 /home/cainan/esp/esp-idf/components/esp32/include/esp_err.h:
 
 /home/cainan/esp/esp-idf/components/heap/include/esp_heap_caps.h:
@@ -272,8 +284,6 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 /home/cainan/esp/esp-idf/components/heap/include/multi_heap.h:
 
 /home/cainan/esp/esp-idf/components/soc/include/soc/soc_memory_layout.h:
-
-/home/cainan/esp/esp-idf/components/esp32/include/esp_attr.h:
 
 /home/cainan/esp/esp-idf/components/freertos/include/freertos/portbenchmark.h:
 
@@ -317,6 +327,20 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 
 /home/cainan/esp/esp-idf/components/soc/esp32/include/soc/touch_channel.h:
 
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/task.h:
+
+/home/cainan/esp/esp-idf/components/newlib/include/limits.h:
+
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/list.h:
+
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/event_groups.h:
+
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/timers.h:
+
+/home/cainan/esp/esp-idf/components/freertos/include/freertos/task.h:
+
+/home/cainan/esp/esp-idf/components/esp32/include/esp_wifi.h:
+
 /home/cainan/esp/esp-idf/components/freertos/include/freertos/queue.h:
 
 /home/cainan/esp/esp-idf/components/esp32/include/rom/queue.h:
@@ -341,19 +365,11 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 
 /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/lwipopts.h:
 
-/home/cainan/esp/esp-idf/components/newlib/platform_include/time.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/time.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/machine/time.h:
-
 /home/cainan/esp/esp-idf/components/newlib/include/unistd.h:
 
 /home/cainan/esp/esp-idf/components/newlib/platform_include/sys/unistd.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/sys/unistd.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/sys/time.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/sys/fcntl.h:
 
@@ -381,12 +397,6 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 
 /home/cainan/esp/esp-idf/components/lwip/include/lwip/port/arch/sys_arch.h:
 
-/home/cainan/esp/esp-idf/components/freertos/include/freertos/task.h:
-
-/home/cainan/esp/esp-idf/components/newlib/include/limits.h:
-
-/home/cainan/esp/esp-idf/components/freertos/include/freertos/list.h:
-
 /home/cainan/esp/esp-idf/components/freertos/include/freertos/semphr.h:
 
 /home/cainan/esp/esp-idf/components/freertos/include/freertos/queue.h:
@@ -403,49 +413,27 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 
 /home/cainan/esp/esp-idf/components/esp32/include/esp_wifi_os_adapter.h:
 
-/home/cainan/esp/esp-idf/components/nvs_flash/include/nvs_flash.h:
-
-/home/cainan/esp/esp-idf/components/nvs_flash/include/nvs.h:
-
 /home/cainan/esp/esp-idf/components/esp32/include/esp_event_loop.h:
-
-/home/cainan/esp/esp-idf/components/freertos/include/freertos/event_groups.h:
-
-/home/cainan/esp/esp-idf/components/freertos/include/freertos/timers.h:
-
-/home/cainan/esp/esp-idf/components/freertos/include/freertos/task.h:
-
-/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h:
-
-/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/err.h:
-
-/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h:
-
-/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/dns.h:
-
-/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h:
 
 /home/cainan/esp/esp-idf/components/log/include/esp_log.h:
 
 /home/cainan/esp/esp-idf/components/log/include/esp_log_internal.h:
 
-/home/cainan/esp/bt_sail/components/espmqtt/include/mqtt.h:
+/home/cainan/esp/esp-idf/components/nvs_flash/include/nvs_flash.h:
 
-/home/cainan/esp/bt_sail/components/espmqtt/include/mqtt_config.h:
+/home/cainan/esp/esp-idf/components/nvs_flash/include/nvs.h:
 
-/home/cainan/esp/bt_sail/components/espmqtt/include/mqtt_msg.h:
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/err.h:
 
-/home/cainan/esp/bt_sail/components/espmqtt/include/ringbuf.h:
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h:
 
-/home/cainan/esp/esp-idf/components/driver/include/driver/adc.h:
-
-/home/cainan/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h:
-
-/home/cainan/esp/esp-idf/components/esp_adc_cal/include/esp_adc_cal.h:
-
-/home/cainan/esp/bt_sail/main/wifi.h:
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h:
 
 /home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/sys.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h:
+
+/home/cainan/esp/esp-idf/components/lwip/include/lwip/lwip/dns.h:
 
 /home/cainan/esp/esp-idf/components/lwip/include/lwip/apps/sntp/sntp.h:
 
@@ -464,4 +452,22 @@ mqttutils.o: /home/cainan/esp/bt_sail/main/mqttutils.c \
 /home/cainan/esp/esp-idf/components/lwip/include/lwip/posix/sys/socket.h:
 
 /home/cainan/esp/esp-idf/components/newlib/include/sys/wait.h:
+
+/home/cainan/esp/bt_sail/components/espmqtt/include/mqtt.h:
+
+/home/cainan/esp/bt_sail/components/espmqtt/include/mqtt_config.h:
+
+/home/cainan/esp/bt_sail/components/espmqtt/include/mqtt_msg.h:
+
+/home/cainan/esp/bt_sail/components/espmqtt/include/ringbuf.h:
+
+/home/cainan/esp/esp-idf/components/esp_adc_cal/include/esp_adc_cal.h:
+
+/home/cainan/esp/esp-idf/components/driver/include/driver/adc.h:
+
+/home/cainan/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h:
+
+/home/cainan/esp/bt_sail/main/utils.h:
+
+/home/cainan/esp/esp-idf/components/bt/bluedroid/api/include/api/esp_bt_defs.h:
 /home/cainan/esp/bt_sail/main/./mqttutils.c:

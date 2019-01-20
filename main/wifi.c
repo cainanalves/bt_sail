@@ -1,12 +1,5 @@
 #include "wifi.h"
 
-//POST request -------------------------
-char web_server[15] = "10.142.70.238"; 
-int web_port = 5000;
-char *web_url = "/scan/1";  
-//POST request -------------------------
-
-
 static const char *TAG = "WiFi_SAIL";
 
 void initialize_wifi() {
@@ -29,12 +22,14 @@ void initialize_wifi() {
     ESP_ERROR_CHECK( esp_wifi_start() );
 }
 
-
-
 void initialize_sntp() {
     ESP_LOGI(TAG, "Inicializando SNTP");
     sntp_setoperatingmode(SNTP_OPMODE_POLL);
-    sntp_setservername(0, "ntp.ufrn.br"); // pool.ntp.org
+
+		//pool.ntp.org <- servidor padrão
+		//ntp.ufrn.br  <- servidor da UFRN
+
+    sntp_setservername(0, "ntp.ufrn.br"); 
     sntp_init();
 }
 
@@ -47,13 +42,12 @@ void obtain_time_sntp() {
     struct tm timeinfo = { 0 };
     int retry = 0;
     const int retry_count = 10;
-    while(timeinfo.tm_year < (2016 - 1900) && ++retry < retry_count) {
+    while(timeinfo.tm_year < (2019 - 1900) && ++retry < retry_count) {
         ESP_LOGI(TAG, "Aguardando que a hora do sistema seja definida ... (%d/%d)", retry, retry_count);
         vTaskDelay(2000 / portTICK_PERIOD_MS);
         time(&now);
         localtime_r(&now, &timeinfo);
     }
-    //ESP_ERROR_CHECK( esp_wifi_stop() );
 }
 
 void set_SNTP(){
@@ -62,8 +56,8 @@ void set_SNTP(){
     time(&now);
 
     localtime_r(&now, &timeinfo);
-    if (timeinfo.tm_year < (2018 - 1900)) {
-        ESP_LOGI(TAG, "Obtendo o tempo através do Simple Network Time Protocol (SNTP).");
+    if (timeinfo.tm_year < (2019 - 1900)) {
+        ESP_LOGI(TAG, "Sincronização do relógio através do Simple Network Time Protocol (SNTP).");
         obtain_time_sntp();
         time(&now);
     }
@@ -75,4 +69,3 @@ void set_SNTP(){
     strftime(strftime_buf, sizeof(strftime_buf), "%c", &timeinfo);
     printf("Data/Hora: %s\n", strftime_buf);
 }
-

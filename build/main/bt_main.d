@@ -154,14 +154,14 @@ bt_main.o: /home/cainan/esp/bt_sail/main/bt_main.c \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/signal.h \
  /home/cainan/esp/esp-idf/components/lwip/include/lwip/posix/sys/socket.h \
  /home/cainan/esp/esp-idf/components/newlib/include/sys/wait.h \
- /home/cainan/esp/bt_sail/main/header.h \
+ /home/cainan/esp/bt_sail/main/header_mqtt.h \
  /home/cainan/esp/bt_sail/components/espmqtt/include/mqtt.h \
  /home/cainan/esp/bt_sail/components/espmqtt/include/mqtt_config.h \
  /home/cainan/esp/bt_sail/components/espmqtt/include/mqtt_msg.h \
  /home/cainan/esp/bt_sail/components/espmqtt/include/ringbuf.h \
+ /home/cainan/esp/esp-idf/components/esp_adc_cal/include/esp_adc_cal.h \
  /home/cainan/esp/esp-idf/components/driver/include/driver/adc.h \
  /home/cainan/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h \
- /home/cainan/esp/esp-idf/components/esp_adc_cal/include/esp_adc_cal.h \
  /home/cainan/esp/bt_sail/main/mqttutils.h
 
 /home/cainan/esp/bt_sail/main/bluetooth.h:
@@ -474,7 +474,7 @@ bt_main.o: /home/cainan/esp/bt_sail/main/bt_main.c \
 
 /home/cainan/esp/esp-idf/components/newlib/include/sys/wait.h:
 
-/home/cainan/esp/bt_sail/main/header.h:
+/home/cainan/esp/bt_sail/main/header_mqtt.h:
 
 /home/cainan/esp/bt_sail/components/espmqtt/include/mqtt.h:
 
@@ -484,11 +484,11 @@ bt_main.o: /home/cainan/esp/bt_sail/main/bt_main.c \
 
 /home/cainan/esp/bt_sail/components/espmqtt/include/ringbuf.h:
 
+/home/cainan/esp/esp-idf/components/esp_adc_cal/include/esp_adc_cal.h:
+
 /home/cainan/esp/esp-idf/components/driver/include/driver/adc.h:
 
 /home/cainan/esp/esp-idf/components/soc/esp32/include/soc/adc_channel.h:
-
-/home/cainan/esp/esp-idf/components/esp_adc_cal/include/esp_adc_cal.h:
 
 /home/cainan/esp/bt_sail/main/mqttutils.h:
 /home/cainan/esp/bt_sail/main/./bt_main.c:
